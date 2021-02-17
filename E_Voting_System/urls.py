@@ -21,5 +21,6 @@ from users import urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home),
+    path('result', views.result),
     path('voting/', include('users.urls')),
 ]

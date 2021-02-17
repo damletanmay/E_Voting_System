@@ -11,3 +11,7 @@ def user_home(request):
 def user_profile(request):
     return render(request, 'user_profile.html')
 
+
+def vote(request):
+    return render(request, 'vote.html')
+
