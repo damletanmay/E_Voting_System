@@ -16,19 +16,21 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 </head>
 <body>
-    <nav>
-        <h1 style="display:inline-block">E-Voting System</h1>
-        <a href="{% url 'user_profile' %}">Profile</a>
-        <a href="{% url 'home' %}">Log Out</a>
+    <nav class="navbar navbar-dark bg-primary">
+        <h1 style="display:inline-block"><i class="fas fa-poll"></i> E-Voting System</h1>
+        <div>
+            <a href="{% url 'user_profile' %}">Profile</a>
+            <a href="{% url 'home' %}">Log Out</a>
+        </div>
     </nav>
 
     <section>
-        <table class="table-dark" width="90%">
-            <thead>
+        <table class="table table-warning">
+            <thead class="bg-warning">
                 <tr>
                     <th>Date</th>
-                    <th>Time</th>
                     <th>Election</th>
+                    <th>Time</th>
                     <th>Go &amp; Vote</th>
                 </tr>
             </thead>
@@ -37,9 +39,9 @@
                 {% for date,name,time in data %}
                 <tr>
                     <td>{{ date }}</td>
-                    <td>{{ time }}</td>
                     <td>{{ name }}</td>
-                    <td><a href="{% url 'vote' %}">Vote</a></td>
+                    <td>{{ time }}</td>
+                    <td><a href="{% url 'vote' %}" class="badge badge-success">Vote</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

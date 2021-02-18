@@ -16,11 +16,13 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 </head>
 <body>
-    <nav>
-        <h1 style="display:inline-block">E-Voting System</h1>
-
-        <a href="{% url 'user_home' %}">Home</a>
-        <a href="{% url 'home' %}">Log Out</a>
+    <nav class="navbar navbar-dark bg-primary">
+        <h1 style="display:inline-block"><i class="fas fa-poll"></i> E-Voting System</h1>
+        
+        <div>
+            <a href="{% url 'user_home' %}">Home</a>
+            <a href="{% url 'home' %}">Log Out</a>
+        </div>
     </nav>
 
     <h2>User Profile</h2>

@@ -15,10 +15,12 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 </head>
 <body>
-	<nav>
-		<h1 style="display:inline-block">E-Voting System</h1>
-		<a href="{% url 'results' %}">Results</a>
-		<a href="{% url 'login' %}">Log In</a>
+	<nav class="navbar navbar-dark bg-primary">
+		<h1 style="display:inline-block"><i class="fas fa-poll"></i> E-Voting System</h1>
+		<div>
+			<a href="{% url 'results' %}">Results</a>
+			<a href="{% url 'login' %}">Log In</a>
+		</div>
 	</nav>
 
 	<article>

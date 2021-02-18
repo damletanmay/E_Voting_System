@@ -16,18 +16,21 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 </head>
 <body>
-    <nav>
-        <h1 style="display:inline-block">E-Voting System</h1>
+    <nav class="navbar navbar-dark bg-primary">
+        <h1 style="display:inline-block"><i class="fas fa-poll"></i> E-Voting System</h1>
 
-        <a href="{% url 'user_home' %}">Home</a>
+        <div>
+            <a href="{% url 'user_home' %}">Home</a>
+        </div>
     </nav>
 
     <h2>{{ name }}</h2>
 
-    <form method="post">
+    <form method="post" class="form-group">
         {% csrf_token %}
-        <table class="table-dark" style="width: 90%;">
-            <thead>
+
+        <table class="table table-warning" style="width: 90%;">
+            <thead class="bg-warning">
                 <tr>
                     <th>Party Symbol</th>
                     <th>Party Leader</th>
@@ -50,13 +53,10 @@
                     <td><input type="radio" /></td>
                 </tr>
 
-            </tbody>
-
-            <tfoot>
                 <tr>
-                    <td><button type="reset" class="btn btn-danger">Clear Selection</button></td>
+                    <td colspan="3"><button type="reset" class="btn btn-danger">Clear Selection</button></td>
                 </tr>
-            </tfoot>
+            </tbody>
         </table>
 
         <button type="submit" class="btn btn-success">Confirm your Vote</button>

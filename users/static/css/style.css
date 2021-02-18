@@ -1,1 +1,65 @@
-﻿
+﻿@import url('https://fonts.googleapis.com/css?family=Agency+FB');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+	font-family: 'Roboto';
+}
+
+h1 {
+	font-family: 'Agency FB';
+	font-weight: bold;
+	font-size: 300%;
+	color: rgba(255,255,255,0.85);
+}
+
+nav {
+	padding: 0.5% 1%;
+}
+
+nav div {
+	width: 180px;
+	padding: 1%;
+	float: right;
+}
+
+nav a {
+	margin: 5%;
+	color: rgba(255,255,255,0.75);
+	font-size: 110%;
+}
+
+nav a:hover {
+	color: white;
+	text-decoration: none;
+}
+
+section,form {
+	text-align: center;
+	margin: 3%;
+}
+
+.badge {
+	font-size: 100%;
+	padding: 3% 7%;
+}
+
+thead {
+	font-size: 105%;
+}
+
+table th:nth-child(1) {
+	border-radius: 15px 0px 0px 0px;
+	border: 0px;
+	width: 27%;
+}
+
+table th:nth-last-child(1) {
+	border-radius: 0px 15px 0px 0px;
+	border: 0px;
+}
+
+table {
+	border-radius: 15px 15px;
+	text-align: center;
+	margin: auto;
+}
