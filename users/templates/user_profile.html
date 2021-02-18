@@ -19,8 +19,8 @@
     <nav>
         <h1 style="display:inline-block">E-Voting System</h1>
 
-        <a href="/voting/user_home">Home</a>
-        <a href="/">Log Out</a>
+        <a href="{% url 'user_home' %}">Home</a>
+        <a href="{% url 'home' %}">Log Out</a>
     </nav>
 
     <h2>User Profile</h2>
@@ -28,13 +28,13 @@
     <section>
         <label>Name: </label>
         <input type="text" disabled value="{{ name }}" />
-        
+
         <label>RMN: </label>
         <input type="tel" disabled value="{{ contact }}" />
-        
+
         <label>DOB: </label>
         <input type="date" disabled value="{{ dob }}" />
-        
+
         <label>Voting ID: </label>
         <input type="text" disabled value="{{ voting_id }}"/>
     </section>

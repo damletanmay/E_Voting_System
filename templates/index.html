@@ -17,14 +17,14 @@
 <body>
 	<nav>
 		<h1 style="display:inline-block">E-Voting System</h1>
-		<a href="/result">Results</a>
-		<a href="/voting/">Log In</a>
+		<a href="{% url 'results' %}">Results</a>
+		<a href="{% url 'login' %}">Log In</a>
 	</nav>
 
 	<article>
 		<h3>How to Vote ??</h3>
 		<ol>
-			<li><a href="/voting/">Click here</a> or go to Navigation bar to Login. </li>
+			<li><a href="{% url 'login' %}">Click here</a> or go to Navigation bar to Login. </li>
 			<li> Enter your Voter ID, then click on <strong>Get OTP</strong> button.</li>
 			<li> OTP will be sent to your Registered Mobile Number, enter that into field and press <strong>Log In</strong> button.</li>
 			<li>

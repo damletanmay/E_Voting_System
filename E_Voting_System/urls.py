@@ -20,7 +20,7 @@ from users import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home),
-    path('result', views.result),
+    path('', views.home,name = 'home'),
+    path('result', views.result,name = 'results'),
     path('voting/', include('users.urls')),
 ]

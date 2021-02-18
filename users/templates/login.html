@@ -22,7 +22,7 @@
         <h3 class="alert alert-danger" role="alert">{{ error }}</h3>
         {% endif %}
 
-        <form method="POST" action = '/voting/user_home'>
+        <form method="POST" action = "{% url 'user_home' %}">
             {% csrf_token %}
             <label>VOTER ID:</label>
             <input type="text" name='user' />

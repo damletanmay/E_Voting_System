@@ -18,8 +18,8 @@
 <body>
     <nav>
         <h1 style="display:inline-block">E-Voting System</h1>
-        <a href="/voting/user_profile">Profile</a>
-        <a href="/">Log Out</a>
+        <a href="{% url 'user_profile' %}">Profile</a>
+        <a href="{% url 'home' %}">Log Out</a>
     </nav>
 
     <section>
@@ -39,7 +39,7 @@
                     <td>{{ date }}</td>
                     <td>{{ time }}</td>
                     <td>{{ name }}</td>
-                    <td><a href="/voting/vote">Vote</a></td>
+                    <td><a href="{% url 'vote' %}">Vote</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
