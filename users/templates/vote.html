@@ -22,7 +22,7 @@
         <a href="/voting/user_home">Home</a>
     </nav>
 
-    <h2>Vote</h2>
+    <h2>{{ name }}</h2>
 
     <form method="post">
         {% csrf_token %}
@@ -36,24 +36,14 @@
             </thead>
 
             <tbody>
+                {% for name,sym in party_data%}
                 <tr>
-                    <td>Logo 1</td>
-                    <td>Leader 1</td>
+                    <td>{{ sym }}</td>
+                    <td>{{ name }}</td>
                     <td><input type="radio" /></td>
                 </tr>
+                {% endfor %}
 
-                <tr>
-                    <td>Logo 2</td>
-                    <td>Leader 2</td>
-                    <td><input type="radio" /></td>
-                </tr>
-
-                <tr>
-                    <td>Logo 3</td>
-                    <td>Leader 3</td>
-                    <td><input type="radio" /></td>
-                </tr>
-                
                 <tr>
                     <td>NOTA</td>
                     <td>None of the Above</td>

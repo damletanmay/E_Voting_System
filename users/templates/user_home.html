@@ -34,12 +34,14 @@
             </thead>
 
             <tbody>
+                {% for date,name,time in data %}
                 <tr>
-                    <td>27/02/2021</td>
-                    <td>8:00 - 17:00 (IST)</td>
-                    <td>17th Loksabha Election</td>
+                    <td>{{ date }}</td>
+                    <td>{{ time }}</td>
+                    <td>{{ name }}</td>
                     <td><a href="/voting/vote">Vote</a></td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </section>
