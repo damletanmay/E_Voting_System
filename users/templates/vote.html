@@ -26,31 +26,34 @@
 
     <h2>{{ name }}</h2>
 
-    <form method="post" class="form-group">
+    <form method="post">
         {% csrf_token %}
 
-        <table class="table table-warning" style="width: 90%;">
-            <thead class="bg-warning">
+        <table class="table table-active" style="width: 90%;">
+            <thead class="bg-dark">
                 <tr>
                     <th>Party Symbol</th>
                     <th>Party Leader</th>
-                    <th>Selection</th>
                 </tr>
             </thead>
 
             <tbody>
-                {% for name,sym in party_data%}
+                {% for nm,sym in party_data%}
                 <tr>
                     <td>{{ sym }}</td>
-                    <td>{{ name }}</td>
-                    <td><input type="radio" /></td>
+                    <td>
+                        <input type="radio" id="{{nm}}" value="{{nm}}" name="user_vote" />
+                        <label for="{{nm}}">{{ nm }}</label>
+                    </td>
                 </tr>
                 {% endfor %}
 
                 <tr>
                     <td>NOTA</td>
-                    <td>None of the Above</td>
-                    <td><input type="radio" /></td>
+                    <td>
+                        <input type="radio" id="NOTA" value="NOTA" name="user_vote" />
+                        <label for="NOTA">None of the Above</label>
+                    </td>
                 </tr>
 
                 <tr>
@@ -61,5 +64,6 @@
 
         <button type="submit" class="btn btn-success">Confirm your Vote</button>
     </form>
+
 </body>
 </html>
