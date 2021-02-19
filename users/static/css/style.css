@@ -132,6 +132,7 @@ input[type=radio] {
 	width: 20%;
 	display: inline-block;
 	text-align: right;
+	box-shadow: 2px 2px 2px;
 }
 
 /*LOGIN Starts*/
@@ -158,6 +159,7 @@ input[type=radio] {
 	font-size: 30px;
 	font-weight: bold;
 	letter-spacing: 2px;
+	text-shadow: 2px 2px 2px gray;
 }
 
 .form-group input {
@@ -177,6 +179,7 @@ input[type=radio] {
 	margin-left: 3px;
 	color: #d4f5ff;
 	text-align: left;
+	text-shadow: 2px 2px 2px gray;
 }
 
 .form-group button {
