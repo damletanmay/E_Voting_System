@@ -28,17 +28,33 @@
     <h2>User Profile</h2>
 
     <section>
-        <label>Name: </label>
-        <input type="text" disabled value="{{ name }}" />
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Name:</span>
+            </div>
+            <input type="text" class="form-control" disabled value="{{name}}" />
+        </div>
 
-        <label>RMN: </label>
-        <input type="tel" disabled value="{{ contact }}" />
-
-        <label>DOB: </label>
-        <input type="date" disabled value="{{ dob }}" />
-
-        <label>Voting ID: </label>
-        <input type="text" disabled value="{{ voting_id }}"/>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">RMN:</span>
+            </div>
+            <input type="tel" class="form-control" disabled value="{{contact}}" />
+        </div>
+        
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">DOB:</span>
+            </div>
+            <input type="date" class="form-control" disabled value="{{dob}}" />
+        </div>
+        
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Voting ID:</span>
+            </div>
+            <input type="text" class="form-control" disabled value="{{voting_id}}" />
+        </div>
     </section>
 </body>
 </html>
