@@ -32,32 +32,74 @@
     <h2>User Profile</h2>
 
     <section>
+      <div>
+      Image:
+          <img class = 'img-fluid' height=200 width=200  src="{{ voter.user_img.url }}" />
+      </div>
+<br/>
+<br/>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">Name:</span>
             </div>
-            <input type="text" class="form-control" disabled value="{{name}}" />
+            <input type="text" class="form-control" disabled value="{{ voter.getName }}" />
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">RMN:</span>
             </div>
-            <input type="tel" class="form-control" disabled value="{{contact}}" />
+            <input type="tel" class="form-control" disabled value="{{ voter.phone_no }}" />
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">DOB:</span>
             </div>
-            <input type="date" class="form-control" disabled value="{{dob}}" />
+            <input type="date" class="form-control" disabled value="{{ voter.getDOB }}" />
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">Voting ID:</span>
             </div>
-            <input type="text" class="form-control" disabled value="{{voting_id}}" />
+            <input type="text" class="form-control" disabled value="{{ voter.voting_number }}" />
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Village:</span>
+            </div>
+            <input type="text" class="form-control" disabled value="{{ voter.village }}" />
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Taluka:</span>
+            </div>
+            <input type="text" class="form-control" disabled value="{{ voter.taluka  }}" />
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">City:</span>
+            </div>
+            <input type="text" class="form-control" disabled value="{{ voter.city }}" />
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">District:</span>
+            </div>
+            <input type="text" class="form-control" disabled value="{{ voter.district }}" />
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">State:</span>
+            </div>
+            <input type="text" class="form-control" disabled value="{{ voter.state }}" />
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Address:</span>
+            </div>
+            <input type="text" class="form-control" disabled value="{{ voter.address }}" />
         </div>
     </section>
 </body>

@@ -14,6 +14,13 @@ class  Voter(models.Model):
     village = models.CharField(max_length = 15,default = None)
     taluka = models.CharField(max_length = 15,default = None)
     address = models.TextField(default = None)
+    dob = models.DateField(default= None)
 
     def __str__(self):
         return self.voting_number
+
+    def getName(self):
+        return (self.fname + ' ' + self.mname + ' ' + self.lname)
+
+    def getDOB(self):
+        return str(self.dob)
