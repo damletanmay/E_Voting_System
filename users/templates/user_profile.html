@@ -18,12 +18,16 @@
 <body>
     <nav class="navbar navbar-dark bg-primary">
         <h1 style="display:inline-block"><i class="fas fa-poll"></i> E-Voting System</h1>
-        
+
         <div>
             <a href="{% url 'user_home' %}">Home</a>
-            <a href="{% url 'home' %}">Log Out</a>
+            <a href="javascript:{document.getElementById('logout').submit()}">Log Out</a>
         </div>
     </nav>
+    <form action="{% url 'logout' %}" method='POST' id='logout'>
+      {% csrf_token %}
+      <input type='hidden'/>
+    </form>
 
     <h2>User Profile</h2>
 
@@ -41,14 +45,14 @@
             </div>
             <input type="tel" class="form-control" disabled value="{{contact}}" />
         </div>
-        
+
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">DOB:</span>
             </div>
             <input type="date" class="form-control" disabled value="{{dob}}" />
         </div>
-        
+
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">Voting ID:</span>

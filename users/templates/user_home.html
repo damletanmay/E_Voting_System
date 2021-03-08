@@ -1,51 +1,58 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-    <meta charset="utf-8" />
-    {% load static %}
-    <meta charset="utf-8">
-    <title>Welcome To E-Voting</title>
-    <link type="image/svg" rel="icon" href="{% static 'poll-solid.svg'%}" />
+  <meta charset="utf-8" />
+  {% load static %}
+  <meta charset="utf-8">
+  <title>Welcome To E-Voting</title>
+  <link type="image/svg" rel="icon" href="{% static 'poll-solid.svg'%}" />
 
-    <!-- Fontawesome CDN -->
-    <script src="https://kit.fontawesome.com/0c287f6377.js" crossorigin="anonymous"></script>
+  <!-- Fontawesome CDN -->
+  <script src="https://kit.fontawesome.com/0c287f6377.js" crossorigin="anonymous"></script>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 </head>
+
 <body>
-    <nav class="navbar navbar-dark bg-primary">
-        <h1 style="display:inline-block"><i class="fas fa-poll"></i> E-Voting System</h1>
-        <div>
-            <a href="{% url 'user_profile' %}">Profile</a>
-            <a href="{% url 'home' %}">Log Out</a>
-        </div>
-    </nav>
+  <nav class="navbar navbar-dark bg-primary">
+    <h1 style="display:inline-block"><i class="fas fa-poll"></i> E-Voting System</h1>
+    <div>
+      <a href="{% url 'user_profile' %}">Profile</a>
+      <a  href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+    </div>
+  </nav>
+  <form action="{% url 'logout' %}" method='POST' id='logout'>
+    {% csrf_token %}
+    <input type='hidden'/>
+  </form>
+  <section>
+    <table class="table table-active table-hover">
+      <thead class="bg-dark">
+        <tr>
+          <th>Date</th>
+          <th>Election</th>
+          <th>Time</th>
+          <th>Go &amp; Vote</th>
+        </tr>
+      </thead>
 
-    <section>
-        <table class="table table-active table-hover">
-            <thead class="bg-dark">
-                <tr>
-                    <th>Date</th>
-                    <th>Election</th>
-                    <th>Time</th>
-                    <th>Go &amp; Vote</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                {% for date,name,time in data %}
-                <tr>
-                    <td>{{ date }}</td>
-                    <td>{{ name }}</td>
-                    <td>{{ time }}</td>
-                    <td><a href="{% url 'vote' %}" class="badge badge-success">Vote</a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </section>
+      <tbody>
+        {% for date,name,time in data %}
+        <tr>
+          <td>{{ date }}</td>
+          <td>{{ name }}</td>
+          <td>{{ time }}</td>
+          <td><a href="{% url 'vote' %}" class="badge badge-success">Vote</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
 </body>
+
 </html>

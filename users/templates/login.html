@@ -42,18 +42,18 @@
 					</div>
 
 					<div class="col-12 form-input">
-						<form action="{% url 'user_home' %}" method="post">
-							{% csrf_token%}
-
+						<form action="{% url 'login' %}" method="post">
+							{% csrf_token %}
+							
 							<div class="form-group">
 
 								<p>VOTER ID</p>
-								<input type="text" class="form-control" placeholder="Enter Voter ID">
+								<input type="text" class="form-control" name = "voter_id" placeholder="Enter Voter ID" autocomplete = "off" required>
 								<p>OTP</p>
 								<input type="password" class="form-control" placeholder="Enter OTP">
 
 								<button type="button" class="btn btn-success">Get OTP</button>
-								<button type="submit" id="login_btn" class="btn btn-success">Log In</button>
+								<button type="submit" id="login_btn" class="btn btn-success" >Log In</button>
 							</div>
 						</form>
 					</div>
