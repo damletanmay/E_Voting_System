@@ -59,32 +59,6 @@ def user_profile(request):
     if request.user.is_authenticated:
         username = request.user.username
         voter = Voter.objects.get(pk = username)
-        # name = voter.getName()
-        # DOB = str(voter.dob)
-        # contact = '+91 '+voter.phone_no
-        # vote_id = voter.voting_number
-        # village = voter.village
-        # taluka = voter.taluka
-        # city = voter.city
-        # district = voter.district
-        # state = voter.state
-        # address = voter.address
-        # img = voter.img
-        #
-        # user_values = {
-        #     'name': name,
-        #     'dob': DOB,
-        #     'contact': contact,
-        #     'voting_id': vote_id,
-        #     'village':village,
-        #     'taluka':taluka,
-        #     'city':city,
-        #     'district':district,
-        #     'state':state,
-        #     'address':address,
-        #     'img':img
-        #     }
-
         return render(request, 'user_profile.html', {'voter':voter})
 
 @login_required(login_url = '/voting/')
