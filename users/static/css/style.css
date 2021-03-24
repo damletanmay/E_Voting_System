@@ -136,6 +136,20 @@ input[type=radio] {
 }
 
 /*LOGIN Starts*/
+.alert {
+	text-align: center;
+	width: auto;
+	margin: 0% 25%;
+	margin-top: 2%;
+	box-shadow: 2px 2px 2px;
+}
+
+.main-section
+{
+	text-align: center !important;
+	margin: auto;
+}
+
 .modal-content {
 	background-color: rgb(0,123,255);
 	opacity: .8;
