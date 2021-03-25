@@ -10,32 +10,28 @@ def login(request):
         return render(request, 'login.html')
 
     elif request.method == 'POST':
-
+        superusers = list(User.objects.filter(is_superuser=True))
         username = request.POST.get("voter_id")
 
-        # print(username)
+        if username == str(superusers[0]):
+            return render(request,'election_home.html')
+        else:
+            if(username is not None):
+                try:
+                    voter = Voter.objects.get(pk = username)
+                    user = auth.authenticate(username = username,password = username)
 
-        if(username is not None):
-            try:
-                voter = Voter.objects.get(pk = username)
-                print(voter)
-                user = auth.authenticate(username = username,password = username)
+                    if user is not None:
+                        auth.login(request,user) # used to login
+                        return redirect('user_home')
+                    else:
+                        user = User.objects.create_user(username,password = username)
+                        auth.login(request,user) # to make user
+                        election_data = {'data': getData()}
+                        return redirect('user_home')
 
-                if user is not None:
-                    auth.login(request,user) #used to login
-                    print('User logged in!')
-                    return redirect('user_home')
-                else:
-                    user = User.objects.create_user(username,password = username)
-                    auth.login(request,user)
-                    print('User Made!')
-                    election_data = {'data': getData()}
-                    return redirect('user_home')
-
-            except Voter.DoesNotExist:
-                return render(request, 'login.html',{'error':"Invalid Voter Id"})
-
-
+                except Voter.DoesNotExist:
+                    return render(request, 'login.html',{'error':"Invalid Voter Id"})
 
 
 def getData():
@@ -67,7 +63,7 @@ def vote(request):
     prt_sym = ['BJP', 'NCI']
 
     party_data = zip(prt_name, prt_sym)
-
+    print(type(party_data))
     election_data = {'name': '17th Loksabha Election', 'party_data': party_data}
 
     return render(request, 'vote.html', election_data)

@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'election',
     'users',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -58,6 +59,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
         'templates',
+        'users/templates',
+        'election/templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
