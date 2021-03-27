@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	{% load static %}
+<head>
+  <meta charset="utf-8">
+  <title>Election Home</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+</head>
+
+<body>
+  Hold An Election
+  <br>
+  <form class="" action="" method="post">
+    <label for="type">Type Of Election:</label>
+    <select name="type" onclick="isVisible()" id="typeSelect">
+      <option value="Vidhan Sabha">Vidhan Sabha</option>
+      <option value="Lok Sabha">Lok Sabha</option>
+      <option value="Nagarpalika">Nagarpalika</option>
+      <option value="Sarpanch">Sarpanch</option>
+    </select>
+    {% csrf_token %}
+    Enter State <input type="text" name="state" value="">
+
+    Enter District <input type="text" name="district" value="">
+
+    Enter Taluka <input type="text" name="taluka" value="">
+
+    Enter City <input type="text" name="city" value="">
+
+    <p id='villagex'>Enter Village <input type="text" name="village"> </p>
+
+		Election Starting Time <input type="time" name="city" value="">
+
+		Election Ending Time <input type="time" name="city" value="">
+
+		Date of Election <input type="date" name="city" value="">
+
+		<button type="submit" name="button">Submit</button>
+  </form>
+    <a href="{%  url 'logout' %}">Logout</a>
+
+    <script src="{% static 'js/index.js' %}" charset="utf-8"></script>
+</body>
+</html>

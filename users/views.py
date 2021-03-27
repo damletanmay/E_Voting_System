@@ -4,6 +4,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from .models import Voter
 
+
 def login(request):
 
     if request.method == 'GET':
@@ -14,7 +15,7 @@ def login(request):
         username = request.POST.get("voter_id")
 
         if username == str(superusers[0]):
-            return render(request,'election_home.html')
+            return redirect('password')
         else:
             if(username is not None):
                 try:
