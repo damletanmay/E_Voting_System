@@ -55,9 +55,17 @@ table a:hover, button:hover {
 	box-shadow: 1px 1px 2px black;
 }
 
-section, form {
+article, section, form {
 	text-align: center;
 	margin: 3%;
+}
+
+article {
+	text-align: justify;
+}
+
+article li {
+	margin: 0.5%;
 }
 
 .badge {
@@ -223,8 +231,11 @@ input[type=radio] {
 /*LOGIN Ends*/
 
 .user-pic {
+	margin: auto;
+	margin-bottom: 2%;
 	height: 100px;
 	width: 100px;
 	border-radius: 50%;
 	object-fit: contain;
+	box-shadow: 3px 3px 3px;
 }

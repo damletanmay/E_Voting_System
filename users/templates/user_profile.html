@@ -24,20 +24,17 @@
             <a href="javascript:{document.getElementById('logout').submit()}">Log Out</a>
         </div>
     </nav>
+
     <form action="{% url 'logout' %}" method='POST' id='logout'>
       {% csrf_token %}
       <input type='hidden'/>
     </form>
 
-    <h2>User Profile</h2>
-
     <section>
-      <div>
-      Image:
-          <img class="user-pic" src="{{ voter.user_img.url }}" />
-      </div>
-<br/>
-<br/>
+        <h2>User Profile</h2>
+
+        <img class="user-pic" src="{{ voter.user_img.url }}" />
+
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">Name:</span>
