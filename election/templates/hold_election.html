@@ -8,37 +8,45 @@
 </head>
 
 <body>
+
   Hold An Election
   <br>
-  <form class="" action="" method="post">
-    <label for="type">Type Of Election:</label>
-    <select name="type" onclick="isVisible()" id="typeSelect">
+  <form class="" action="{% url 'hold' %}" method="post">
+		    {% csrf_token %}
+		Name of Election <input type="text" name="name" value="" required>
+
+		<label for="type">Type Of Election:</label>
+    <select name="type" onclick="isVisible()" id="typeSelect" required>
       <option value="Vidhan Sabha">Vidhan Sabha</option>
       <option value="Lok Sabha">Lok Sabha</option>
       <option value="Nagarpalika">Nagarpalika</option>
       <option value="Sarpanch">Sarpanch</option>
     </select>
-    {% csrf_token %}
-    Enter State <input type="text" name="state" value="">
 
-    Enter District <input type="text" name="district" value="">
 
-    Enter Taluka <input type="text" name="taluka" value="">
+    Enter State <input type="text" name="state" value="" required>
 
-    Enter City <input type="text" name="city" value="">
+    Enter District <input type="text" name="district" value="" required>
+
+    Enter Taluka <input type="text" name="taluka" value="" required>
+
+    Enter City <input type="text" name="city" value="" required>
 
     <p id='villagex'>Enter Village <input type="text" name="village"> </p>
 
-		Election Starting Time <input type="time" name="city" value="">
+		Election Starting Time <input type="time" name="start" value="" required>
 
-		Election Ending Time <input type="time" name="city" value="">
+		Election Ending Time <input type="time" name="end" value="" required>
 
-		Date of Election <input type="date" name="city" value="">
+		Date of Election <input type="date" name="date" value="" required>
 
 		<button type="submit" name="button">Submit</button>
+
   </form>
     <a href="{%  url 'logout' %}">Logout</a>
-
+		{% if error %}
+			<h1>{{error}}</h1>
+		{% endif %}
     <script src="{% static 'js/index.js' %}" charset="utf-8"></script>
 </body>
 </html>

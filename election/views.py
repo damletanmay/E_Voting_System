@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import auth
+from .models import Election
 
 @login_required
 def election_home(request):
@@ -9,7 +10,39 @@ def election_home(request):
 
 @login_required
 def hold(request):
-    return render(request,'hold_election.html');
+    if request.method == 'GET':
+        return render(request,'hold_election.html');
+    elif request.method == 'POST':
+        if (request.POST.get('name') and
+            request.POST.get('state') and
+            request.POST.get('taluka') and
+            request.POST.get('city') and
+            request.POST.get('district') and
+            request.POST.get('start') and
+            request.POST.get('end') and
+            request.POST.get('date')):
+
+            election = Election()
+            election.name_of_election = request.POST.get('name')
+            election.type_of_election = request.POST.get('type')
+            election.state = request.POST.get('state')
+            election.district = request.POST.get('district')
+            election.taluka = request.POST.get('taluka')
+            election.city = request.POST.get('city')
+            if request.POST.get('village'):
+                election.village = request.POST.get('village')
+            else:
+                election.village = '-'
+            election.starting_time = request.POST.get('start')
+            election.ending_time = request.POST.get('end')
+            election.date = request.POST.get('date')
+
+            election.hold = request.user
+            election.save()
+            return redirect('election_home')
+
+        else:
+            return render(request,'hold_election.html',{'error':'All Fields Required !'})
 
 def password(request):
     if request.method == 'GET':
