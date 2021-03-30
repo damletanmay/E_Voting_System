@@ -18,3 +18,6 @@ class Election(models.Model):
 
     def __str__(self):
         return self.name_of_election
+
+    def getTime(self):
+        return str(self.starting_time) + '-' +str( self.ending_time)

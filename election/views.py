@@ -4,9 +4,14 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Election
 
+def getData():
+    election = Election. objects.all()
+    return election
+
 @login_required
 def election_home(request):
-    return render(request,'election_home.html');
+    election_data = {'data': getData()}
+    return render(request,'election_home.html',election_data);
 
 @login_required
 def hold(request):

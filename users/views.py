@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from .models import Voter
+from election.models import Election
 
 
 def login(request):
@@ -36,13 +37,8 @@ def login(request):
 
 
 def getData():
-    el_date = ['27/02/2021', '28/02/2021']
-    el_name = ['17th Loksabha Election', '18th Loksabha Election']
-    el_time = ['8:00 - 17:00 (IST)', '8:00 - 17:00 (IST)']
-
-    data = zip(el_date, el_name, el_time)
-
-    return data
+    election = Election. objects.all()
+    return election
 
 @login_required(login_url = '/voting/')
 def user_home(request):
@@ -64,7 +60,6 @@ def vote(request):
     prt_sym = ['BJP', 'NCI']
 
     party_data = zip(prt_name, prt_sym)
-    print(type(party_data))
     election_data = {'name': '17th Loksabha Election', 'party_data': party_data}
 
     return render(request, 'vote.html', election_data)

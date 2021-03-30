@@ -36,17 +36,32 @@
         <tr>
           <th>Date</th>
           <th>Election</th>
+          <th>Type</th>
+          <th>State</th>
+          <th>District</th>
+          <th>Taluka</th>
+          <th>Village</th>
           <th>Time</th>
           <th>Go &amp; Vote</th>
         </tr>
       </thead>
 
       <tbody>
-        {% for date,name,time in data %}
+        {% for election in data %}
         <tr>
-          <td>{{ date }}</td>
-          <td>{{ name }}</td>
-          <td>{{ time }}</td>
+              {% csrf_token %}
+          <td>{{ election.date }}</td>
+          <td>{{ election.name_of_election }}</td>
+          <td>{{ election.type_of_election }}</td>
+          <td>{{ election.state }}</td>
+          <td>{{ election.district }}</td>
+          <td>{{ election.taluka }}</td>
+          {% if election.village != '-' %}
+          <td>{{ election.village }}</td>
+          {% else %}
+          <td>-</td>
+          {% endif %}
+          <td>{{ election.getTime }}</td>
           <td><a href="{% url 'vote' %}" class="badge badge-success">Vote</a></td>
         </tr>
         {% endfor %}
