@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    {% if error %}
+      <h1>{{error}}</h1>
+    {% endif %}
+      <form class="" action="{% url 'candidate_login' %}" method="post">
+        {% csrf_token %}
+        To Register For Being In An Election, Go to Election Office For the Secret Key & Register From There.
+        <br>
+        <br>
+        Voter Id<input type="text" name="voter_id" value="" required>
+        <br>
+        <br>
+        Username<input type="text" name="username" value="" required>
+        <br>
+        <br>
+        Password<input type="password" name="password" value="" required>
+        <button type="submit" name="button">Login</button>
+      </form>
+  </body>
+</html>

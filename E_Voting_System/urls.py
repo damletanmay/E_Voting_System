@@ -27,4 +27,5 @@ urlpatterns = [
     path('result', views.result,name = 'results'),
     path('voting/', include('users.urls')),
     path('election/', include('election.urls')),
+    path('candidate/',include('candidate.urls')),
 ] + static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
