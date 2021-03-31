@@ -62,7 +62,7 @@
           <td>-</td>
           {% endif %}
           <td>{{ election.getTime }}</td>
-          <td><a href="{% url 'vote' %}" class="badge badge-success">Vote</a></td>
+          <td><a href="{% url 'vote' election.id %}" class="badge badge-success">Vote</a></td>
         </tr>
         {% endfor %}
       </tbody>

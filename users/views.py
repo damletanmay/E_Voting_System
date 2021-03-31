@@ -55,12 +55,12 @@ def user_profile(request):
         return render(request, 'user_profile.html', {'voter':voter})
 
 @login_required(login_url = '/voting/')
-def vote(request):
+def vote(request,election_id):
     prt_name = ['Narendra Modi', 'Rahul Gandhi']
     prt_sym = ['BJP', 'NCI']
 
     party_data = zip(prt_name, prt_sym)
-    election_data = {'name': '17th Loksabha Election', 'party_data': party_data}
+    election_data = {'name': Election.objects.get(pk = election_id), 'party_data': party_data}
 
     return render(request, 'vote.html', election_data)
 

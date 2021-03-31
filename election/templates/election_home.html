@@ -15,7 +15,6 @@ Election Home Page
         <th>Taluka</th>
         <th>Village</th>
         <th>Time</th>
-        <th>Go &amp; Vote</th>
       </tr>
     </thead>
 
@@ -35,7 +34,6 @@ Election Home Page
         <td>-</td>
         {% endif %}
         <td>{{ election.getTime }}</td>
-        <td><a href="{% url 'vote' %}" class="badge badge-success">Vote</a></td>
       </tr>
       {% endfor %}
     </tbody>
