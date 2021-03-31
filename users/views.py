@@ -9,7 +9,10 @@ from election.models import Election
 def login(request):
 
     if request.method == 'GET':
-        return render(request, 'login.html')
+        if request.user.is_authenticated:
+            return redirect('user_home')
+        else:
+            return render(request, 'login.html')
 
     elif request.method == 'POST':
         superusers = list(User.objects.filter(is_superuser=True))
@@ -56,13 +59,37 @@ def user_profile(request):
 
 @login_required(login_url = '/voting/')
 def vote(request,election_id):
-    prt_name = ['Narendra Modi', 'Rahul Gandhi']
-    prt_sym = ['BJP', 'NCI']
+    if request.method == 'GET':
 
-    party_data = zip(prt_name, prt_sym)
-    election_data = {'name': Election.objects.get(pk = election_id), 'party_data': party_data}
+        election =  Election.objects.get(pk = election_id)
+        if isEligible(request,election):
 
-    return render(request, 'vote.html', election_data)
+            prt_name = ['Narendra Modi', 'Rahul Gandhi']
+            prt_sym = ['BJP', 'NCI']
+            party_data = zip(prt_name, prt_sym)
+            election_data = {'election':election, 'party_data': party_data}
+            return render(request, 'vote.html', election_data)
+
+        else:
+            return render(request,'not_eligible.html',{'error':'You are Not Eligible For This Voting Because Your State/District/Village is Different Than The Election Is being Held On!'})
+
+    else:
+        return render(request, 'vote.html')
+
+def isEligible(request,election):
+
+    username = request.user.username
+    voter = Voter.objects.get(pk = username)
+
+    if (voter.state.upper() == election.state.upper() and voter.district.upper() == election.district.upper()):
+        if (election.type_of_election == 'Sarpanch'):
+            if(voter.village.upper() == election.village.upper() and voter.taluka.upper() == election.taluka.upper()):
+                return True
+            else:
+                return False
+        return True
+    else:
+        return False
 
 
 @login_required(login_url = '/voting/')
