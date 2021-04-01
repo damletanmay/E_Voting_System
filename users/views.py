@@ -71,7 +71,7 @@ def vote(request,election_id):
             return render(request, 'vote.html', election_data)
 
         else:
-            return render(request,'not_eligible.html',{'error':'You are Not Eligible For This Voting Because Your State/District/Village is Different Than The Election Is being Held On!'})
+            return render(request,'not_eligible.html',{'error':'You are Not Eligible For This Voting Because Your State/District/Village is Different Than The Election Is being Held On!','link':'user_home'})
 
     else:
         return render(request, 'vote.html')
