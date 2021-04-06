@@ -81,7 +81,7 @@ def isEligible(request,election):
     username = request.user.username
     voter = Voter.objects.get(pk = username)
 
-    if (voter.state.upper() == election.state.upper() and voter.district.upper() == election.district.upper()):
+    if (voter.state.upper() == election.state.upper() and voter.district.upper() == election.district.upper() and voter.taluka.upper() == election.taluka.upper()):
         if (election.type_of_election == 'Sarpanch'):
             if(voter.village.upper() == election.village.upper() and voter.taluka.upper() == election.taluka.upper()):
                 return True

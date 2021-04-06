@@ -1,11 +1,12 @@
 from django.shortcuts import render,redirect,HttpResponse
-from users.models import Voter
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from users.models import Voter
 from election.models import Election
+from .models import Candidate
 
-# Create your views here.
+
 def candidate_login(request):
     if request.method == 'GET':
         if request.user.is_authenticated:
@@ -65,20 +66,42 @@ def candidate_register(request,election_id,voter_id):
     if request.method == 'GET':
         if request.user.is_superuser:
             if isEligible(election_id,voter_id):
-                return render(request,'register.html')
+                voter = Voter.objects.get(pk = voter_id)
+                election = Election.objects.get(pk=election_id)
+                return render(request,'register.html',{'voter':voter,'election':election})
             else:
                 return render(request,'not_eligible.html',{'error':'You are Not Eligible For Candidacy in This Election Because Your State/District/Village is Different Than The Election Is being Held On!','link':'candidate_home'})
         else:
             return HttpResponse("Authorized Personnel Only !")
-    else:
-        return render(request,'register.html')
+    elif request.method == 'POST':
 
+        party_name = request.POST.get("party_name")
+        party_leader_name =request.POST.get("party_leader_name")
+        party_motto = request.POST.get("party_motto")
+        party_logo = request.POST['party_logo']
+        candidate = Candidate()
+        candidate.voter_id = voter_id
+        candidate.election_id = election_id
+        candidate.party_name = party_name
+        candidate.party_leader_name = party_leader_name
+        candidate.party_motto = party_motto
+        candidate.party_logo = party_logo
+        candidate.total_votes = 0
+        print(candidate.voter_id)
+        print(candidate.election_id)
+        print(candidate.party_name)
+        print(candidate.party_leader_name)
+        print(candidate.party_motto)
+        candidate.save()
+        print(voter_id)
+        print(election_id)
+        return redirect('candidate_login')
 
 def isEligible(election_id,voter_id):
     election = Election.objects.get(pk = election_id)
     voter = Voter.objects.get(pk = voter_id)
 
-    if (voter.state.upper() == election.state.upper() and voter.district.upper() == election.district.upper()):
+    if (voter.state.upper() == election.state.upper() and voter.district.upper() == election.district.upper() and voter.taluka.upper() == election.taluka.upper()):
         if (election.type_of_election == 'Sarpanch'):
             if(voter.village.upper() == election.village.upper() and voter.taluka.upper() == election.taluka.upper()):
                 return True
