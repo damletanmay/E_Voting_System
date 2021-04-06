@@ -4,6 +4,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from .models import Voter
 from election.models import Election
+from candidate.models import Candidate
 
 
 def login(request):
@@ -63,18 +64,21 @@ def vote(request,election_id):
 
         election =  Election.objects.get(pk = election_id)
         if isEligible(request,election):
-
-            prt_name = ['Narendra Modi', 'Rahul Gandhi']
-            prt_sym = ['BJP', 'NCI']
-            party_data = zip(prt_name, prt_sym)
-            election_data = {'election':election, 'party_data': party_data}
-            return render(request, 'vote.html', election_data)
+            candidate_data = getCandidateData(election_id)
+            return render(request, 'vote.html', candidate_data)
 
         else:
             return render(request,'not_eligible.html',{'error':'You are Not Eligible For This Voting Because Your State/District/Village is Different Than The Election Is being Held On!','link':'user_home'})
 
     else:
         return render(request, 'vote.html')
+
+def getCandidateData(elec_id):
+
+    candidates = Candidate.objects.filter(election_id = elec_id)
+    candidate_data = {'candidates':candidates}
+
+    return candidate_data
 
 def isEligible(request,election):
 

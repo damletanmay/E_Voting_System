@@ -43,12 +43,12 @@
             </thead>
 
             <tbody>
-                {% for nm,sym in party_data%}
+                {% for candidate in candidates %}
                 <tr>
-                    <td>{{ sym }}</td>
+                    <td>{{ candidate.party_leader_name }}</td>
                     <td>
                         <input type="radio" id="{{nm}}" value="{{nm}}" name="user_vote" />
-                        <label for="{{nm}}">{{ nm }}</label>
+                        <label for="{{nm}}">{{ candidate.party_leader_name }}</label>
                     </td>
                 </tr>
                 {% endfor %}
