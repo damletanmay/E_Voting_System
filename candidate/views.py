@@ -63,7 +63,35 @@ def candidate_home(request):
 
 @login_required(login_url = '/candidate/')
 def candidate_register(request,election_id,voter_id):
-    if request.method == 'GET':
+    if request.method == "POST":
+
+        party_name = request.POST['party_name']
+        party_leader_name = request.POST['party_leader_name']
+        party_motto = request.POST['party_motto']
+
+        if party_name and party_leader_name and party_motto and request.FILES['party_symbol']:
+
+            candidate = Candidate()
+            candidate.voter_id = voter_id
+            candidate.election_id = election_id
+            candidate.party_name = party_name
+            candidate.party_leader_name = party_leader_name
+            candidate.party_motto = party_motto
+            candidate.party_logo = request.FILES['party_symbol']
+            candidate.total_votes = 0
+            print(candidate.voter_id)
+            print(candidate.election_id)
+            print(candidate.party_name)
+            print(candidate.party_leader_name)
+            print(candidate.party_motto)
+            candidate.save()
+            print(voter_id)
+            print(election_id)
+            return redirect('candidate_login')
+        else:
+            return render(request,'register.html',{'error':"All Fileds Required!"})
+
+    elif request.method == 'GET':
         if request.user.is_superuser:
             if isEligible(election_id,voter_id):
                 voter = Voter.objects.get(pk = voter_id)
@@ -73,29 +101,7 @@ def candidate_register(request,election_id,voter_id):
                 return render(request,'not_eligible.html',{'error':'You are Not Eligible For Candidacy in This Election Because Your State/District/Village is Different Than The Election Is being Held On!','link':'candidate_home'})
         else:
             return HttpResponse("Authorized Personnel Only !")
-    elif request.method == 'POST':
 
-        party_name = request.POST.get("party_name")
-        party_leader_name =request.POST.get("party_leader_name")
-        party_motto = request.POST.get("party_motto")
-        party_logo = request.POST['party_logo']
-        candidate = Candidate()
-        candidate.voter_id = voter_id
-        candidate.election_id = election_id
-        candidate.party_name = party_name
-        candidate.party_leader_name = party_leader_name
-        candidate.party_motto = party_motto
-        candidate.party_logo = party_logo
-        candidate.total_votes = 0
-        print(candidate.voter_id)
-        print(candidate.election_id)
-        print(candidate.party_name)
-        print(candidate.party_leader_name)
-        print(candidate.party_motto)
-        candidate.save()
-        print(voter_id)
-        print(election_id)
-        return redirect('candidate_login')
 
 def isEligible(election_id,voter_id):
     election = Election.objects.get(pk = election_id)

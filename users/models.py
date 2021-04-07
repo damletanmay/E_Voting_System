@@ -3,7 +3,7 @@ from django.db import models
 class  Voter(models.Model):
 
     voting_number = models.CharField(max_length = 20,default = None,primary_key = True)
-    user_img = models.ImageField(upload_to = 'voters/',default = None)
+    user_img = models.ImageField(upload_to = 'images/voters/',default = None)
     fname = models.CharField(max_length = 20,default = None)
     mname = models.CharField(max_length = 20,default = None)
     lname = models.CharField(max_length = 20,default = None)

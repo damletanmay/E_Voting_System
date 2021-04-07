@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Election(models.Model):
-
+    id = models.AutoField(primary_key=True)
     type_of_election = models.CharField(default = None,max_length = 30);
     name_of_election = models.CharField(default = None,max_length = 100);
     state = models.CharField(default = None,max_length = 30);

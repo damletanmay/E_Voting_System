@@ -127,6 +127,12 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
-MEDIA_URL = '/images/'
+MEDIA_URL = '/media/'
+
+STATIC_ROOT=os.path.join(BASE_DIR,'static')
 
 STATICFILES = 'static'
+
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR,'E_Voting_System/static/'),
+]
