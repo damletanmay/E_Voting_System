@@ -79,6 +79,7 @@ def candidate_register(request,election_id,voter_id):
             candidate.party_motto = party_motto
             candidate.party_logo = request.FILES['party_symbol']
             candidate.total_votes = 0
+            candidate.user = request.user
             print(candidate.voter_id)
             print(candidate.election_id)
             print(candidate.party_name)

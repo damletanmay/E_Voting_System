@@ -19,7 +19,7 @@
   <a href="{% url 'c_logout' %}">Logout</a>
   <br>
   <br>
-  <form class="" action="{% url 'candidate_register' election.id voter.voting_number %}" method="post">
+  <form class="" action="{% url 'candidate_register' election.id voter.voting_number %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     Name: {{ voter.getName }}
     <br><br>
