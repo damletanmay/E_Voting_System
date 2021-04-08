@@ -2,6 +2,8 @@
 <html lang="en" dir="ltr">
 <head>
 	{% load static %}
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
 	<title>Welcome To E-Voting</title>
 	<link type="image/svg" rel="icon" href="{% static 'poll-solid.svg'%}" />
@@ -24,7 +26,7 @@
 	</nav>
 
 	{% if error %}
-	<h3 class="alert alert-danger" role="alert">{{ error }}</h3>
+		<h3 class="alert alert-danger" role="alert">{{ error }}</h3>
 	{% endif %}
 
 	<section>
@@ -44,7 +46,7 @@
 					</div>
 
 					<div class="col-12 form-input">
-						<form action="{% url 'password' %}" method="post">
+						<form action="{% url 'candidate_home' %}" method="post">
 							{% csrf_token %}
 
 							<div class="form-group">

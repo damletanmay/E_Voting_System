@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8" />
     {% load static %}
-    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hold Election</title>
     <link type="image/svg" rel="icon" href="{% static 'poll-solid.svg'%}" />
 
@@ -36,16 +37,16 @@
         <form action="{% url 'hold' %}" method="post">
             {% csrf_token %}
 
-            <div class="input-group mb-3">
+            <div class="input-group mb-3" id="long_field">
                 <div class="input-group-prepend" id="long_label">
-                    <span class="input-group-text">Name of Election:</span>
+                    <span class="input-group-text">Election Name:</span>
                 </div>
                 <input type="text" name="name" class="form-control" value="" required />
             </div>
 
-            <div class="input-group mb-3">
+            <div class="input-group mb-3" id="long_field">
                 <div class="input-group-prepend" id="long_label">
-                    <span class="input-group-text">Type of Election:</span>
+                    <span class="input-group-text">Election Type:</span>
                 </div>
 
                 <select class="custom-select" name="type" onclick="isVisible()" id="typeSelect" required>
@@ -56,56 +57,56 @@
                 </select>
             </div>
 
-            <div class="input-group mb-3">
+            <div class="input-group mb-3" id="long_field">
                 <div class="input-group-prepend" id="long_label">
-                    <span class="input-group-text">Enter State:</span>
+                    <span class="input-group-text">State:</span>
                 </div>
                 <input type="text" class="form-control" name="state" value="" required>
             </div>
 
-            <div class="input-group mb-3">
+            <div class="input-group mb-3" id="long_field">
                 <div class="input-group-prepend" id="long_label">
-                    <span class="input-group-text">Enter District:</span>
+                    <span class="input-group-text">District:</span>
                 </div>
                 <input type="text" class="form-control" name="district" value="" required>
             </div>
 
-            <div class="input-group mb-3">
+            <div class="input-group mb-3" id="long_field">
                 <div class="input-group-prepend" id="long_label">
-                    <span class="input-group-text">Enter Taluka:</span>
+                    <span class="input-group-text">Taluka:</span>
                 </div>
                 <input type="text" class="form-control" name="taluka" value="" required>
             </div>
 
             <div class="input-group mb-3" id="cityx">
                 <div class="input-group-prepend" id="long_label">
-                    <span class="input-group-text">Enter City:</span>
+                    <span class="input-group-text">City:</span>
                 </div>
                 <input type="text" class="form-control" name="city" value="" required>
             </div>
 
             <div class="input-group mb-3" id="villagex">
                 <div class="input-group-prepend" id="long_label">
-                    <span class="input-group-text">Enter Village:</span>
+                    <span class="input-group-text">Village:</span>
                 </div>
                 <input type="text" class="form-control" name="village">
             </div>
 
-            <div class="input-group mb-3">
+            <div class="input-group mb-3" id="long_field">
                 <div class="input-group-prepend" id="long_label">
-                    <span class="input-group-text">Election Starting Time:</span>
+                    <span class="input-group-text">Starting Time:</span>
                 </div>
                 <input type="time" class="form-control" name="start" value="" required>
             </div>
 
-            <div class="input-group mb-3">
+            <div class="input-group mb-3" id="long_field">
                 <div class="input-group-prepend" id="long_label">
-                    <span class="input-group-text">Election Ending Time:</span>
+                    <span class="input-group-text">Ending Time:</span>
                 </div>
                 <input type="time" class="form-control" name="end" value="" required>
             </div>
 
-            <div class="input-group mb-3">
+            <div class="input-group mb-3" id="long_field">
                 <div class="input-group-prepend" id="long_label">
                     <span class="input-group-text">Date of Election:</span>
                 </div>

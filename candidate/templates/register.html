@@ -2,6 +2,8 @@
 <html lang="en" dir="ltr">
 <head>
     {% load static %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <title>Welcome To E-Voting</title>
     <link type="image/svg" rel="icon" href="{% static 'poll-solid.svg'%}" />
@@ -34,22 +36,22 @@
 
             <img class="user-pic" src="{{ voter.user_img.url }}" />
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
+            <div class="input-group mb-3" id="long_field">
+                <div class="input-group-prepend" id="long_label">
                     <span class="input-group-text">Name:</span>
                 </div>
-                <input type="text" class="form-control" value="{{ voter.getName }}" />
+                <input type="text" class="form-control" value="{{ voter.getName }}" disabled />
             </div>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
+            <div class="input-group mb-3" id="long_field">
+                <div class="input-group-prepend" id="long_label">
                     <span class="input-group-text">Party Name:</span>
                 </div>
                 <input type="text" name="party_name" class="form-control" value="" required />
             </div>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
+            <div class="input-group mb-3" id="long_field">
+                <div class="input-group-prepend" id="long_label">
                     <span class="input-group-text">Party Symbol:</span>
                 </div>
 
@@ -59,16 +61,16 @@
                 </div>
             </div>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
+            <div class="input-group mb-3" id="long_field">
+                <div class="input-group-prepend" id="long_label">
                     <span class="input-group-text">Party Motto:</span>
                 </div>
                 <input type="text" name="party_motto" class="form-control" value="" required />
             </div>
 
             
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
+            <div class="input-group mb-3" id="long_field">
+                <div class="input-group-prepend" id="long_label">
                     <span class="input-group-text">Party Leader:</span>
                 </div>
                 <input type="text" name="party_leader_name" class="form-control" value="" required />

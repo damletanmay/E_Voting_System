@@ -4,7 +4,8 @@
 <head>
 	<meta charset="utf-8" />
 	{% load static %}
-	<meta charset="utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Welcome To E-Voting</title>
 	<link type="image/svg" rel="icon" href="{% static 'poll-solid.svg'%}" />
 
@@ -25,14 +26,17 @@
 		</div>
 	</nav>
 
+	{% if error %}
+		<h3 class="alert alert-danger">{{error}}</h3>
+	{% endif %}
+
 	<form action="{% url 'logout' %}" method='POST' id='logout'>
 		{% csrf_token %}
 		<input type='hidden' />
 	</form>
 
-	{% if error %}
-		<h3 class="alert alert-danger">{{error}}</h3>
-	{% endif %}
-	<a href="{% url link %}">Go Back To Home</a>
+	<section>
+		<a href="{% url link %}" class="badge badge-success">Go Back To Home</a>
+	</section>
 </body>
 </html>

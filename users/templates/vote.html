@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8" />
     {% load static %}
-    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vote</title>
     <link type="image/svg" rel="icon" href="{% static 'poll-solid.svg'%}" />
 
@@ -47,7 +48,7 @@
             <tbody>
                 {% for candidate in candidates %}
                 <tr>
-                    <td> <img src="{{ candidate.party_logo.url }}" alt="" class = "img-fluid" height="75" width="75"> </td>
+                    <td> <img src="{{ candidate.party_logo.url }}" class = "img-fluid"> </td>
                     <td>{{ candidate.party_leader_name }}</td>
                     <td>{{ candidate.party_name }}</td>
                     <td>
