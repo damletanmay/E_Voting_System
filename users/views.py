@@ -76,7 +76,8 @@ def vote(request,election_id):
 def getCandidateData(elec_id):
 
     candidates = Candidate.objects.filter(election_id = elec_id)
-    candidate_data = {'candidates':candidates}
+    election = Election.objects.get(pk = elec_id)
+    candidate_data = {'candidates':candidates,'election':election}
 
     return candidate_data
 

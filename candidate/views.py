@@ -72,7 +72,7 @@ def candidate_register(request,election_id,voter_id):
         if party_name and party_leader_name and party_motto and request.FILES['party_symbol']:
 
             candidate = Candidate()
-            candidate.voter_id = voter_id
+            candidate.voter = Voter.objects.get(pk=voter_id)
             candidate.election_id = election_id
             candidate.party_name = party_name
             candidate.party_leader_name = party_leader_name

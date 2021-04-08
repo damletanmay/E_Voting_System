@@ -38,31 +38,38 @@
             <thead class="bg-dark">
                 <tr>
                     <th>Party Symbol</th>
+                    <th>Party Name</th>
                     <th>Party Leader</th>
+                    <th>Candidate Name</th>
                 </tr>
             </thead>
 
             <tbody>
                 {% for candidate in candidates %}
                 <tr>
+                    <td> <img src="{{ candidate.party_logo.url }}" alt="" class = "img-fluid" height="75" width="75"> </td>
                     <td>{{ candidate.party_leader_name }}</td>
+                    <td>{{ candidate.party_name }}</td>
                     <td>
-                        <input type="radio" id="{{nm}}" value="{{nm}}" name="user_vote" />
-                        <label for="{{nm}}">{{ candidate.party_leader_name }}</label>
+                        <input type="radio" id="{{candidate.voter.getName }}" value="{{candidate.id}}" name="user_vote" />
+                        <label for="{{candidate.voter.getName}}">{{ candidate.voter.getName }}</label>
                     </td>
                 </tr>
                 {% endfor %}
 
                 <tr>
                     <td>NOTA</td>
+                    <td>NOTA</td>
+                    <td>NOTA</td>
+
                     <td>
                         <input type="radio" id="NOTA" value="NOTA" name="user_vote" />
-                        <label for="NOTA">None of the Above</label>
+                        <label for="NOTA">NOTA</label>
                     </td>
                 </tr>
 
                 <tr>
-                    <td colspan="3"><button type="reset" class="btn btn-danger">Clear Selection</button></td>
+                    <td colspan="5"><button type="reset" class="btn btn-danger">Clear Selection</button></td>
                 </tr>
             </tbody>
         </table>
