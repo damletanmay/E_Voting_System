@@ -1,51 +1,122 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-	{% load static %}
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="utf-8">
-  <title>Election Home</title>
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <meta charset="utf-8" />
+    {% load static %}
+    <meta charset="utf-8">
+    <title>Hold Election</title>
+    <link type="image/svg" rel="icon" href="{% static 'poll-solid.svg'%}" />
+
+    <!-- Fontawesome CDN -->
+    <script src="https://kit.fontawesome.com/0c287f6377.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 </head>
 
 <body>
-  Hold An Election
-  <br>
-  <form class="" action="{% url 'hold' %}" method="post">
-		    {% csrf_token %}
-		Name of Election <input type="text" name="name" value="" required>
+    <nav class="navbar navbar-dark bg-primary">
+        <h1 style="display:inline-block"><i class="fas fa-poll"></i> Election Homepage</h1>
 
-		<label for="type">Type Of Election:</label>
-    <select name="type" onclick="isVisible()" id="typeSelect" required>
-      <option value="Vidhan Sabha">Vidhan Sabha</option>
-      <option value="Lok Sabha">Lok Sabha</option>
-      <option value="Nagarpalika">Nagarpalika</option>
-      <option value="Sarpanch">Sarpanch/Gram Panchayat</option>
-    </select>
+        <div>
+            <a href="{% url 'election_home' %}">Home</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+    </nav>
 
+    {% if error %}
+        <h3 class="alert alert-danger">{{error}}</h3>
+    {% endif %}
 
-    Enter State <input type="text" name="state" value="" required>
+    <section>
+        <h2>Enter Election Details</h2>
 
-    Enter District <input type="text" name="district" value="" required>
+        <form action="{% url 'hold' %}" method="post">
+            {% csrf_token %}
 
-    Enter Taluka <input type="text" name="taluka" value="" required>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend" id="long_label">
+                    <span class="input-group-text">Name of Election:</span>
+                </div>
+                <input type="text" name="name" class="form-control" value="" required />
+            </div>
 
-    Enter City <input type="text" name="city" value="" required>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend" id="long_label">
+                    <span class="input-group-text">Type of Election:</span>
+                </div>
 
-    <p id='villagex'>Enter Village <input type="text" name="village"> </p>
+                <select class="custom-select" name="type" onclick="isVisible()" id="typeSelect" required>
+                    <option value="Vidhan Sabha">Vidhan Sabha</option>
+                    <option value="Lok Sabha">Lok Sabha</option>
+                    <option value="Nagarpalika">Nagarpalika</option>
+                    <option value="Sarpanch">Sarpanch/Gram Panchayat</option>
+                </select>
+            </div>
 
-		Election Starting Time <input type="time" name="start" value="" required>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend" id="long_label">
+                    <span class="input-group-text">Enter State:</span>
+                </div>
+                <input type="text" class="form-control" name="state" value="" required>
+            </div>
 
-		Election Ending Time <input type="time" name="end" value="" required>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend" id="long_label">
+                    <span class="input-group-text">Enter District:</span>
+                </div>
+                <input type="text" class="form-control" name="district" value="" required>
+            </div>
 
-		Date of Election <input type="date" name="date" value="" required>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend" id="long_label">
+                    <span class="input-group-text">Enter Taluka:</span>
+                </div>
+                <input type="text" class="form-control" name="taluka" value="" required>
+            </div>
 
-		<button type="submit" name="button">Submit</button>
+            <div class="input-group mb-3" id="cityx">
+                <div class="input-group-prepend" id="long_label">
+                    <span class="input-group-text">Enter City:</span>
+                </div>
+                <input type="text" class="form-control" name="city" value="" required>
+            </div>
 
-  </form>
-    <a href="{%  url 'logout' %}">Logout</a>
-		{% if error %}
-			<h1>{{error}}</h1>
-		{% endif %}
+            <div class="input-group mb-3" id="villagex">
+                <div class="input-group-prepend" id="long_label">
+                    <span class="input-group-text">Enter Village:</span>
+                </div>
+                <input type="text" class="form-control" name="village">
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend" id="long_label">
+                    <span class="input-group-text">Election Starting Time:</span>
+                </div>
+                <input type="time" class="form-control" name="start" value="" required>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend" id="long_label">
+                    <span class="input-group-text">Election Ending Time:</span>
+                </div>
+                <input type="time" class="form-control" name="end" value="" required>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend" id="long_label">
+                    <span class="input-group-text">Date of Election:</span>
+                </div>
+                <input type="date" class="form-control" name="date" value="" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" name="button">Hold Election</button>
+
+        </form>
+    </section>
+
     <script src="{% static 'js/index.js' %}" charset="utf-8"></script>
 </body>
 </html>

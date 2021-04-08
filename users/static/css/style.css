@@ -35,6 +35,10 @@ nav {
 		float: right;
 	}
 
+	#sup_home {
+		width: 275px;
+	}
+
 	nav a {
 		margin: 5%;
 		color: rgba(255,255,255,0.75);
@@ -101,7 +105,7 @@ form table th:nth-child(1) {
 }
 
 input {
-	box-shadow: 2px 2px 2px;
+	box-shadow: 2px 2px 2px black;
 }
 
 input[type=radio] {
@@ -110,8 +114,8 @@ input[type=radio] {
 }
 
 	input[type=radio] ~ label {
-		width: 30%;
-		padding: 1%;
+		width: 50%;
+		padding: 2%;
 		background-color: rgba(0,123,255,0.5);
 		border-radius: 10px;
 		box-shadow: 4px 4px 4px;
@@ -141,6 +145,14 @@ input[type=radio] {
 	display: inline-block;
 	text-align: right;
 	box-shadow: 2px 2px 2px;
+}
+
+#long_label {
+	width: 30%;
+}
+
+.custom-select, .custom-file-label {
+	box-shadow: 2px 2px 2px black;
 }
 
 /*LOGIN Starts*/
@@ -238,4 +250,9 @@ input[type=radio] {
 	border-radius: 50%;
 	object-fit: contain;
 	box-shadow: 3px 3px 3px;
+}
+
+.btn-lg {
+	width: 25%;
+	margin: 2%;
 }
