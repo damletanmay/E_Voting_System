@@ -61,11 +61,13 @@ def user_profile(request):
 @login_required(login_url = '/voting/')
 def vote(request,election_id):
     if request.method == 'GET':
-
         election =  Election.objects.get(pk = election_id)
         if isEligible(request,election):
-            candidate_data = getCandidateData(election_id)
-            return render(request, 'vote.html', candidate_data)
+            if hasNotVoted(request,request.user.username,election_id):
+                candidate_data = getCandidateData(election_id)
+                return render(request, 'vote.html', candidate_data)
+            else:
+                return render(request,'not_eligible.html',{'error':'You Already Have Voted !','link':'user_home'})
 
         else:
             return render(request,'not_eligible.html',{'error':'You are Not Eligible For This Voting Because Your State/District/Village is Different Than The Election Is being Held On!','link':'user_home'})
@@ -75,13 +77,22 @@ def vote(request,election_id):
 
         get_voter = request.POST.get('voter')
 
-        voter = Voter.objects.get(pk = get_voter)
-
-        voter.voted_elections.append(election_id)
-        
-        voter.save()
-
-        return redirect('user_home')
+        if user_vote is not None:
+            voter = Voter.objects.get(pk = get_voter)
+            voter.voted_elections.append(election_id)
+            voter.save()
+            if user_vote == 'NOTA':
+                election = Election.objects.get(pk = election_id)
+                election.NOTA_votes +=1
+                election.save()
+            else:
+                candidate = Candidate.objects.get(pk = user_vote)
+                candidate.total_votes+=1
+                candidate.save()
+            # TODO: To redirect to the success page !
+            return redirect('user_home')
+        else:
+            return render(request,'vote.html',{'error':'Select A Field To Vote!'})
 
 def getCandidateData(elec_id):
 
@@ -106,6 +117,13 @@ def isEligible(request,election):
     else:
         return False
 
+def hasNotVoted(request,voter_id,election_id):
+    voter = Voter.objects.get(pk = voter_id)
+
+    if election_id in voter.voted_elections:
+        return False
+    else:
+        return True
 
 @login_required(login_url = '/voting/')
 def logout(request):

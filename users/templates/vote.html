@@ -31,7 +31,9 @@
     </form>
 
     <h2>{{ election.name_of_election }}</h2>
-
+    {% if error %}
+    {{ error }}
+    {% endif %}
     <form method="post" action="{% url 'vote' election.id %}" >
         {% csrf_token %}
 
@@ -67,7 +69,7 @@
                     <td>NOTA</td>
 
                     <td>
-                        <input type="radio" id="NOTA" value="NOTA" name="user_vote" />
+                        <input type="radio" id="NOTA" value="NOTA" name="user_vote" required />
                         <label for="NOTA">NOTA</label>
                     </td>
                 </tr>

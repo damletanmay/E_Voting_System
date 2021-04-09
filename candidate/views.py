@@ -88,9 +88,12 @@ def candidate_register(request,election_id,voter_id):
     elif request.method == 'GET':
         if request.user.is_superuser:
             if isEligible(election_id,voter_id):
-                voter = Voter.objects.get(pk = voter_id)
-                election = Election.objects.get(pk=election_id)
-                return render(request,'register.html',{'voter':voter,'election':election})
+                if isRegistered(election_id,voter_id):
+                    voter = Voter.objects.get(pk = voter_id)
+                    election = Election.objects.get(pk=election_id)
+                    return render(request,'register.html',{'voter':voter,'election':election})
+                else:
+                    return render(request,'not_eligible.html',{'error':'You already are Registered in this Election!','link':'candidate_home'})
             else:
                 return render(request,'not_eligible.html',{'error':'You are Not Eligible For Candidacy in This Election Because Your State/District/Village is Different Than The Election Is being Held On!','link':'candidate_home'})
         else:
@@ -110,6 +113,14 @@ def isEligible(election_id,voter_id):
         return True
     else:
         return False
+
+
+def isRegistered(election_id,voter_id):
+    try:
+        candidate = Candidate.objects.get(election_id = election_id,voter__voting_number = voter_id)
+        return False
+    except Candidate.DoesNotExist:
+            return True
 
 @login_required(login_url = '/candidate/')
 def logout(request):

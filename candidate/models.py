@@ -10,7 +10,7 @@ class Candidate(models.Model):
     party_logo = models.ImageField(upload_to = 'images/candidates/')
     party_motto = models.TextField(default = None,max_length = 200)
     party_leader_name = models.CharField(default = None,max_length = 30)
-    total_votes = models.PositiveBigIntegerField()
+    total_votes = models.PositiveBigIntegerField(default=0)
     voter = models.ForeignKey(Voter,on_delete = models.CASCADE,default=None)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
 

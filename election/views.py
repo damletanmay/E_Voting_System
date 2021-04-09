@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect,get_object_or_404,HttpResponse
+from django.shortcuts import render,redirect,HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import auth
@@ -26,7 +26,6 @@ def hold(request):
             if (request.POST.get('name') and
                 request.POST.get('state') and
                 request.POST.get('taluka') and
-                request.POST.get('city') and
                 request.POST.get('district') and
                 request.POST.get('start') and
                 request.POST.get('end') and
@@ -38,11 +37,14 @@ def hold(request):
                 election.state = request.POST.get('state')
                 election.district = request.POST.get('district')
                 election.taluka = request.POST.get('taluka')
-                election.city = request.POST.get('city')
                 if request.POST.get('village'):
                     election.village = request.POST.get('village')
                 else:
                     election.village = '-'
+                if request.POST.get('city'):
+                    election.city = request.POST.get('city')
+                else:
+                    election.city = '-'
                 election.starting_time = request.POST.get('start')
                 election.ending_time = request.POST.get('end')
                 election.date = request.POST.get('date')

@@ -15,6 +15,7 @@ class Election(models.Model):
     ending_time = models.TimeField(auto_now=False, auto_now_add=False)
     date = models.DateField(default=None);
     hold = models.ForeignKey(User,on_delete=models.CASCADE)
+    NOTA_votes = models.PositiveBigIntegerField(default=0)
 
     def __str__(self):
         return self.name_of_election
