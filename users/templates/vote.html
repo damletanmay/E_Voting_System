@@ -32,7 +32,7 @@
 
     <h2>{{ election.name_of_election }}</h2>
 
-    <form method="post">
+    <form method="post" action="{% url 'vote' election.id %}" >
         {% csrf_token %}
 
         <table class="table table-active" style="width: 90%;">
@@ -41,6 +41,7 @@
                     <th>Party Symbol</th>
                     <th>Party Name</th>
                     <th>Party Leader</th>
+                    <th>Candidate Picture</th>
                     <th>Candidate Name</th>
                 </tr>
             </thead>
@@ -51,6 +52,7 @@
                     <td> <img src="{{ candidate.party_logo.url }}" class = "img-fluid"> </td>
                     <td>{{ candidate.party_leader_name }}</td>
                     <td>{{ candidate.party_name }}</td>
+                    <td> <img src="{{ candidate.voter.user_img.url }}" alt="" height="75" width="75"> </td>
                     <td>
                         <input type="radio" id="{{candidate.voter.getName }}" value="{{candidate.id}}" name="user_vote" />
                         <label for="{{candidate.voter.getName}}">{{ candidate.voter.getName }}</label>
@@ -59,6 +61,7 @@
                 {% endfor %}
 
                 <tr>
+                    <td>NOTA</td>
                     <td>NOTA</td>
                     <td>NOTA</td>
                     <td>NOTA</td>
@@ -74,6 +77,7 @@
                 </tr>
             </tbody>
         </table>
+        <input type="hidden" name="voter" value="{{user.get_username}}">
 
         <button type="submit" class="btn btn-success">Confirm your Vote</button>
     </form>

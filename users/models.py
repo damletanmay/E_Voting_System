@@ -1,4 +1,5 @@
 from django.db import models
+from django_mysql.models import ListTextField
 
 class  Voter(models.Model):
 
@@ -15,6 +16,12 @@ class  Voter(models.Model):
     taluka = models.CharField(max_length = 15,default = None)
     address = models.TextField(default = None)
     dob = models.DateField(default= None)
+    voted_elections =  ListTextField(
+        blank = True,
+        default = [],
+        base_field=models.IntegerField(),
+        size=1000,
+    )
 
     def __str__(self):
         return self.voting_number
@@ -24,3 +31,4 @@ class  Voter(models.Model):
 
     def getDOB(self):
         return str(self.dob)
+        

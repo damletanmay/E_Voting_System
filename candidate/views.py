@@ -80,14 +80,7 @@ def candidate_register(request,election_id,voter_id):
             candidate.party_logo = request.FILES['party_symbol']
             candidate.total_votes = 0
             candidate.user = request.user
-            print(candidate.voter_id)
-            print(candidate.election_id)
-            print(candidate.party_name)
-            print(candidate.party_leader_name)
-            print(candidate.party_motto)
             candidate.save()
-            print(voter_id)
-            print(election_id)
             return redirect('candidate_login')
         else:
             return render(request,'register.html',{'error':"All Fileds Required!"})

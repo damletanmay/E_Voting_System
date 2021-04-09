@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Voter
 from election.models import Election
 from candidate.models import Candidate
-
+from django_mysql.models import ListF
 
 def login(request):
 
@@ -71,7 +71,17 @@ def vote(request,election_id):
             return render(request,'not_eligible.html',{'error':'You are Not Eligible For This Voting Because Your State/District/Village is Different Than The Election Is being Held On!','link':'user_home'})
 
     else:
-        return render(request, 'vote.html')
+        user_vote = request.POST.get('user_vote')
+
+        get_voter = request.POST.get('voter')
+
+        voter = Voter.objects.get(pk = get_voter)
+
+        voter.voted_elections.append(election_id)
+        
+        voter.save()
+
+        return redirect('user_home')
 
 def getCandidateData(elec_id):
 
