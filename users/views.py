@@ -1,11 +1,12 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from .models import Voter
 from election.models import Election
 from candidate.models import Candidate
-from django_mysql.models import ListF
+import datetime
+
 
 def login(request):
 
@@ -62,15 +63,31 @@ def user_profile(request):
 def vote(request,election_id):
     if request.method == 'GET':
         election =  Election.objects.get(pk = election_id)
-        if isEligible(request,election):
-            if hasNotVoted(request,request.user.username,election_id):
-                candidate_data = getCandidateData(election_id)
-                return render(request, 'vote.html', candidate_data)
-            else:
-                return render(request,'not_eligible.html',{'error':'You Already Have Voted !','link':'user_home'})
+        now =  datetime.datetime.now()
 
+        if (now.day == election.date.day and now.month == election.date.month and now.year == election.date.year ):
+
+            if (now.hour <= election.starting_time.hour and now.minute <= election.starting_time.minute):
+                return render(request,'not_eligible.html',{'error':'Election has not Started Yet!','link':'user_home'})
+
+            elif (now.hour >= election.ending_time.hour and now.minute >= election.ending_time.minute):
+                return render(request,'not_eligible.html',{'error':'Election has Ended!','link':'user_home'})
+
+            else:
+
+                if isEligible(request,election):
+
+                    if hasNotVoted(request,request.user.username,election_id):
+                        candidate_data = getCandidateData(election_id)
+                        return render(request, 'vote.html', candidate_data)
+
+                    else:
+                        return render(request,'not_eligible.html',{'error':'You Already Have Voted !','link':'user_home'})
+
+                else:
+                    return render(request,'not_eligible.html',{'error':'You are Not Eligible For This Voting Because Your State/District/Village is Different Than The Election Is being Held On!','link':'user_home'})
         else:
-            return render(request,'not_eligible.html',{'error':'You are Not Eligible For This Voting Because Your State/District/Village is Different Than The Election Is being Held On!','link':'user_home'})
+            return render(request,'not_eligible.html',{'error':'Election is on '+ str(election.date.strftime('%d -''%m -''%Y')),'link':'user_home'})
 
     else:
         user_vote = request.POST.get('user_vote')

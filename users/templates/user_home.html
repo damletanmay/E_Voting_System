@@ -51,7 +51,7 @@
 				{% for election in data %}
 				<tr>
 					{% csrf_token %}
-					<td>{{ election.date }}</td>
+					<td>{{ election.getDate }}</td>
 					<td>{{ election.name_of_election }}</td>
 					<td>{{ election.type_of_election }}</td>
 					<td>{{ election.state }}</td>

@@ -22,3 +22,6 @@ class Election(models.Model):
 
     def getTime(self):
         return str(self.starting_time) + '-' +str( self.ending_time)
+
+    def getDate(self):
+        return self.date.strftime('%d %B %Y')
