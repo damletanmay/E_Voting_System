@@ -22,7 +22,6 @@ media
 
 # Distribution / packaging
 .Python
-static/
 build/
 develop-eggs/
 dist/
