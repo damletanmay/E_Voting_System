@@ -31,4 +31,3 @@ class  Voter(models.Model):
 
     def getDOB(self):
         return str(self.dob)
-        

@@ -42,7 +42,7 @@ def login(request):
 
 
 def getData():
-    election = Election. objects.all()
+    election = Election. objects.filter(isOver = False)
     return election
 
 @login_required(login_url = '/voting/')
@@ -71,6 +71,8 @@ def vote(request,election_id):
                 return render(request,'not_eligible.html',{'error':'Election has not Started Yet!','link':'user_home'})
 
             elif (now.hour >= election.ending_time.hour and now.minute >= election.ending_time.minute):
+                election.isOver = True
+                election.save()
                 return render(request,'not_eligible.html',{'error':'Election has Ended!','link':'user_home'})
 
             else:
@@ -90,7 +92,7 @@ def vote(request,election_id):
             return render(request,'not_eligible.html',{'error':'Election is on '+ str(election.date.strftime('%d -''%m -''%Y')),'link':'user_home'})
 
     else:
-        user_vote = request.POST.get('user_vote')
+        user_vote = request.POST.get('user_vote')#candidate id
 
         get_voter = request.POST.get('voter')
 
@@ -113,7 +115,7 @@ def vote(request,election_id):
 
 def getCandidateData(elec_id):
 
-    candidates = Candidate.objects.filter(election_id = elec_id)
+    candidates = Candidate.objects.filter(election__id = elec_id)
     election = Election.objects.get(pk = elec_id)
     candidate_data = {'candidates':candidates,'election':election}
 

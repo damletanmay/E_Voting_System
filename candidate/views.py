@@ -55,7 +55,7 @@ def candidate_home(request):
         voter_id = request.POST.get("voter_id")
         try:
             voter = Voter.objects.get(pk = voter_id)
-            election = Election.objects.all()
+            election = Election.objects.filter(isOver = False)
             return render(request,'candidate_home.html',{'elections':election,'voter':voter})
         except Voter.DoesNotExist:
             return render(request,'getId.html',{'error':'Invalid Voter Id!'})
@@ -73,7 +73,7 @@ def candidate_register(request,election_id,voter_id):
 
             candidate = Candidate()
             candidate.voter = Voter.objects.get(pk=voter_id)
-            candidate.election_id = election_id
+            candidate.election = Election.objects.get(pk = election_id)
             candidate.party_name = party_name
             candidate.party_leader_name = party_leader_name
             candidate.party_motto = party_motto
@@ -117,7 +117,7 @@ def isEligible(election_id,voter_id):
 
 def isRegistered(election_id,voter_id):
     try:
-        candidate = Candidate.objects.get(election_id = election_id,voter__voting_number = voter_id)
+        candidate = Candidate.objects.get(election__id = election_id,voter__voting_number = voter_id)
         return False
     except Candidate.DoesNotExist:
             return True

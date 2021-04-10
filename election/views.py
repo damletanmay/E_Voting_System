@@ -5,7 +5,7 @@ from django.contrib import auth
 from .models import Election
 
 def getData():
-    election = Election. objects.all()
+    election = Election.objects.filter(isOver = False)
     return election
 
 @login_required(login_url = '/election/password')
@@ -48,7 +48,7 @@ def hold(request):
                 election.starting_time = request.POST.get('start')
                 election.ending_time = request.POST.get('end')
                 election.date = request.POST.get('date')
-
+                election.isOver = False
                 election.hold = request.user
                 election.save()
                 return redirect('election_home')

@@ -28,4 +28,5 @@ urlpatterns = [
     path('voting/', include('users.urls')),
     path('election/', include('election.urls')),
     path('candidate/',include('candidate.urls')),
+    path('winner/<int:election_id>',views.winner,name='winner')
 ] + static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+# from candidate.models import Candidate
 
 # Create your models here.
 class Election(models.Model):
@@ -16,6 +17,9 @@ class Election(models.Model):
     date = models.DateField(default=None);
     hold = models.ForeignKey(User,on_delete=models.CASCADE)
     NOTA_votes = models.PositiveBigIntegerField(default=0)
+    isOver = models.BooleanField(default = False)
+    # election_winner = models.ForeignKey(Candidate,on_delete = models.CASCADE,default=None,blank=True)
+    # bookmarked = models.ManyToManyFields(to='candidate.Candidate')
 
     def __str__(self):
         return self.name_of_election

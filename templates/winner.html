@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Winner</title>
+  </head>
+  <body>
+    <h1>Congragulations!</h1>
+
+
+    <h3>{{ first }}</h3>
+
+
+    {% if second %}
+    <h4>{{ second.voter.getName }} is in second place with {{ second_votes  }} votes.</h4>
+    {% endif %}
+
+    {% if third %}
+    <h5>{{ third.voter.getName }} is in the third place with {{ third_votes  }} votes.</h5>
+    {% endif %}
+  </body>
+</html>

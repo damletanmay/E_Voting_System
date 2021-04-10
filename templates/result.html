@@ -24,5 +24,43 @@
             <a href="{% url 'login' %}">Log In</a>
         </div>
     </nav>
+
+
+  	<section>
+  		<table class="table table-active table-hover">
+  			<thead class="bg-dark">
+  				<tr>
+  					<th>Date</th>
+  					<th>Election</th>
+  					<th>Type</th>
+  					<th>State</th>
+  					<th>District</th>
+  					<th>Taluka</th>
+  					<th>Village</th>
+  					<th>See Results</th>
+  				</tr>
+  			</thead>
+
+  			<tbody>
+  				{% for election in data %}
+  				<tr>
+  					{% csrf_token %}
+  					<td>{{ election.getDate }}</td>
+  					<td>{{ election.name_of_election }}</td>
+  					<td>{{ election.type_of_election }}</td>
+  					<td>{{ election.state }}</td>
+  					<td>{{ election.district }}</td>
+  					<td>{{ election.taluka }}</td>
+  					{% if election.village != '-' %}
+  					<td>{{ election.village }}</td>
+  					{% else %}
+  					<td>-</td>
+  					{% endif %}
+  					<td><a href="{% url 'winner' election.id %}" class="badge badge-success">See Results</a></td>
+  				</tr>
+  				{% endfor %}
+  			</tbody>
+  		</table>
+  	</section>
 </body>
 </html>

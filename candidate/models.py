@@ -1,11 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 from users.models import Voter
+from election.models import Election
 
 class Candidate(models.Model):
 
     id = models.AutoField(primary_key=True)
-    election_id = models.CharField(default = None,max_length = 30)
+    election = models.ForeignKey(Election,on_delete=models.CASCADE,default=None)
     party_name = models.CharField(default = None,max_length = 30)
     party_logo = models.ImageField(upload_to = 'images/candidates/')
     party_motto = models.TextField(default = None,max_length = 200)
