@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+# all urls path will go to thier particular view
 urlpatterns = [
      path('', views.candidate_login,name = 'candidate_login'),
      path('voter/', views.candidate_voter,name = 'candidate_voter'),

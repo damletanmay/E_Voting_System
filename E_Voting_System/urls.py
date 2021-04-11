@@ -25,8 +25,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home,name = 'home'),
     path('result', views.result,name = 'results'),
-    path('voting/', include('users.urls')),
-    path('election/', include('election.urls')),
-    path('candidate/',include('candidate.urls')),
+    path('voting/', include('users.urls')),# redirecting to users' urls.py
+    path('election/', include('election.urls')),# redirecting to election's urls.py
+    path('candidate/',include('candidate.urls')),# redirecting to candidate's urls.py
     path('winner/<int:election_id>',views.winner,name='winner')
 ] + static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
+# for accessing the images and the url of media files.
