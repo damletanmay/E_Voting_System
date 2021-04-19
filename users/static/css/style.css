@@ -4,6 +4,7 @@
 
 body {
 	font-family: 'Roboto';
+	background: linear-gradient(180deg, rgba(240,125,45,0.5) 0%, rgba(255,255,255,0) 33%, rgba(255,255,255,0) 67%, rgba(30,135,30,0.5) 100%) no-repeat fixed;
 }
 
 h1 {
