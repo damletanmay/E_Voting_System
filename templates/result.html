@@ -51,11 +51,13 @@
   					<td>{{ election.state }}</td>
   					<td>{{ election.district }}</td>
   					<td>{{ election.taluka }}</td>
+
   					{% if election.village != '-' %}
-  					<td>{{ election.village }}</td>
+  					    <td>{{ election.village }}</td>
   					{% else %}
-  					<td>-</td>
+  					    <td>-</td>
   					{% endif %}
+
   					<td><a href="{% url 'winner' election.id %}" class="badge badge-success">See Results</a></td>
   				</tr>
   				{% endfor %}
