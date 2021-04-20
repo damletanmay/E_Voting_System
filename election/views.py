@@ -82,7 +82,7 @@ def hold(request):
                 election.isOver = False
                 election.hold = request.user
                 election.save()
-                return render(request,'success.html',{'output':'Successfully Registered into Election!','smallop':'Registered','link':'election_home'})
+                return render(request,'success.html',{'output':'Successfully Registered into Election!','link':'election_home'})
 
             else:
                 return render(request,'hold_election.html',{'error':'All Fields are Required !'})

@@ -158,7 +158,7 @@ def vote(request,election_id):
                 candidate = Candidate.objects.get(pk = user_vote)
                 candidate.total_votes+=1
                 candidate.save()
-            return render(request,'success.html',{'output':'Successfully Voted!','link':'user_home','smallop':'Voted'})
+            return render(request,'success.html',{'output':'Successfully Voted!','link':'user_home'})
 
         else:
             '''  Case where user forgets a field to Select, but this won't probably happen,
