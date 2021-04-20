@@ -27,7 +27,7 @@ SECRET_KEY = 'asj_b8huty-4jgmv11&%jd0@ni1&)6pe4z45ykokxpm)6q1fda'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1']
+ALLOWED_HOSTS = ['localhost','127.0.0.1','e-voting--system.herokuapp.com']
 
 
 # Application definition
