@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-#import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -27,7 +26,7 @@ SECRET_KEY = 'asj_b8huty-4jgmv11&%jd0@ni1&)6pe4z45ykokxpm)6q1fda'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost','127.0.0.1']
 
 
 # Application definition
@@ -138,5 +137,3 @@ STATICFILES = 'static'
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'E_Voting_System/static/'),
 ]
-# Activate Django-Heroku.
-#django_heroku.settings(locals())
