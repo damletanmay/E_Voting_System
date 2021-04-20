@@ -15,8 +15,13 @@ def result(request):
 def winner(request,election_id):
     # getting particular election and all candidates for that election.
     election = Election.objects.get(pk= election_id)
+
+    # getting all objects except first which is the winner.
     allcandidate = Candidate.objects.filter(election__id = election_id).order_by('-total_votes')[1:] # __ in query indacates foreign key.
+
     nota_votes = election.NOTA_votes
+    # getting the winner.
     winner = Candidate.objects.filter(election__id = election_id).order_by('-total_votes')[0:1]
-    print(winner[0])
+
+    
     return render(request,'winner.html',{'allcandidates':allcandidate,'winner':winner,'nota_votes':nota_votes})

@@ -6,10 +6,12 @@ from .models import Voter
 from election.models import Election
 from candidate.models import Candidate
 import datetime
+from . import otp as OTP
+from .secrets import *
+
 
 # for login page.
 # As there are two types of requests GET & POST i checked where to redirect if either was the case in each view.
-
 
 def login(request):
 
@@ -45,20 +47,40 @@ def login(request):
                     user = auth.authenticate(username = username,password = username) # to check if the voter Already has an account.
                     # if the voter does have an account it will return the user and log him in.
                     # else it will create an account for the voter and then log user in.
-
+                    otp = OTP.generateOTP()
                     if user is not None:
-                        auth.login(request,user) # used to login
-                        return redirect('user_home')
+                        OTP.sendOTP(voter.phone_no,otp,getSid(),getToken(),getFromMobile())
+                        return render(request,'otp.html',{'voter':voter,'otp':otp})
                     else:
-                        user = User.objects.create_user(username,password = username)
-                         # to make user
-                        auth.login(request,user)
+                        user = User.objects.create_user(username,password = username)# to make user
                         election_data = {'data': getData()}
-                        return redirect('user_home')
+                        OTP.sendOTP(voter.phone_no,otp,getSid(),getToken(),getFromMobile())
+                        return render(request,'otp.html',{'voter':voter,'otp':otp})
 
                 except Voter.DoesNotExist:# above error will be handled here.
                     return render(request, 'login.html',{'error':"Invalid Voter Id"})
 
+#for handling otp authentication
+def otp(request):
+
+    if request.method == 'GET':# for get request
+        return redirect('login')# redirect to login because we need number.
+
+    elif request.method == 'POST':# for post request
+
+        voter_no = request.POST.get('voter')#to get voting number of user passed.
+        voter = Voter.objects.get(pk=voter_no)# to get the voter object for above voting number
+        user_otp = request.POST.get('user_otp')#to get what user entered
+        otp = request.POST.get('otp')# to get otp.py's generatedOTP
+
+        if(otp == user_otp):
+            #authentication Successfull!
+            user = auth.authenticate(username = voter.voting_number,password = voter.voting_number)
+            auth.login(request,user)# used to login
+            return redirect('user_home')
+        else:
+            #authentication unsucessfull!
+            return render(request,'otp.html',{'voter':voter,'otp':otp,'error':'wrong OTP'})# to show error
 
 # to get such elections from database which are not yet over.
 def getData():

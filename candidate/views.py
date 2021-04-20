@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from users.models import Voter
 from election.models import Election
 from .models import Candidate
-
+import datetime
 # for loging into the panel superuser acc. is Required.
 def candidate_login(request):
 
@@ -69,7 +69,7 @@ def candidate_home(request):
         # i have done this Because id is needed .
         voter_id = request.POST.get("voter_id")
         try:
-            # this will raise error if None is returned.
+            # Exception will raise error if None is returned.
             voter = Voter.objects.get(pk = voter_id)
             # only getting such elections which are not over yet !
             election = Election.objects.filter(isOver = False)
@@ -109,22 +109,27 @@ def candidate_register(request,election_id,voter_id):
     elif request.method == 'GET': # for GET request
 
         if request.user.is_superuser: # to check if user is a super user
+            now =  datetime.datetime.now() # getting time.
+            election =  Election.objects.get(pk = election_id)
+            # checking if the date is same as election date.
+            if (now.day < election.date.day and now.month <= election.date.month and now.year <= election.date.year ):
+                # case where candidate isn't late for standing in election
+                if isEligible(election_id,voter_id): # to check if user is Eligible
 
-            if isEligible(election_id,voter_id): # to check if user is Eligible
+                    if isNotRegistered(election_id,voter_id): # to check if he is already Registered.
 
-                if isNotRegistered(election_id,voter_id): # to check if he is already Registered.
+                        voter = Voter.objects.get(pk = voter_id)
+                        election = Election.objects.get(pk=election_id)
 
-                    voter = Voter.objects.get(pk = voter_id)
-                    election = Election.objects.get(pk=election_id)
+                        return render(request,'register.html',{'voter':voter,'election':election})
 
-                    return render(request,'register.html',{'voter':voter,'election':election})
+                    else: # case where user is already registered.
+                        return render(request,'not_eligible.html',{'error':'You already are Registered in this Election!','link':'candidate_home'})
 
-                else: # case where user is already registered.
-                    return render(request,'not_eligible.html',{'error':'You already are Registered in this Election!','link':'candidate_home'})
-
-            else: # case where user is not eligible.
-                return render(request,'not_eligible.html',{'error':'You are Not Eligible For Candidacy in This Election Because Your State/District/Village is Different Than The Election Is being Held On!','link':'candidate_home'})
-
+                else: # case where user is not eligible.
+                    return render(request,'not_eligible.html',{'error':'You are Not Eligible For Candidacy in This Election Because Your State/District/Village is Different Than The Election Is being Held On!','link':'candidate_home'})
+            else:
+                return render(request,'not_eligible.html',{'error':'Registrations Are Over!','link':'candidate_home'})
         else:
             # case when simple user tries to login.
             return HttpResponse("<h1> Authorized Personnel Only !</h1>")
