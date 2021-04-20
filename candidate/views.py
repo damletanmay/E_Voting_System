@@ -101,7 +101,7 @@ def candidate_register(request,election_id,voter_id):
             candidate.total_votes = 0
             candidate.user = request.user
             candidate.save()
-            return render(request,'success.html',{'output':'Successfully Registered into Election!','link':'candidate_home'})
+            return render(request,'success.html',{'output':'Successfully Registered into Election!','link':'candidate_home','smallop':'Registered'})
 
         else:
             return render(request,'register.html',{'error':"All Fileds Required!"})
