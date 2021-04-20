@@ -29,16 +29,24 @@
 
     <section>
         <h2>Congragulations!</h2>
+        {% for win in winner %}
 
-        <h3 style="color:#32c81a">1. {{ first }}</h3>
+        <h2 style="color:#32c81a">Winner is {{ win.voter.getName }} with {{ win.total_votes }} Votes.</h2>
 
-        {% if second %}
-        <h4 style="color:#32c81a">2. {{ second.voter.getName }} with {{ second_votes }} votes.</h4>
-        {% endif %}
 
-        {% if third %}
-        <h5 style="color:#32c81a">3. {{ third.voter.getName }} with {{ third_votes }} votes.</h5>
-        {% endif %}
+        <p >
+          Other Candidates:
+        </p>
+        {% endfor %}
+
+        {% for candidate in allcandidates %}
+
+        <h4 style="color:#32c81a">{{ candidate.voter.getName }} has {{ candidate.total_votes }} votes.</h4>
+
+        {% endfor %}
+
+        <h4 style="color:#32c81a">NOTA has {{ nota_votes }} votes.</h4>
+
     </section>
 </body>
 </html>
