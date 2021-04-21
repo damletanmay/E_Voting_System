@@ -80,7 +80,5 @@ Write to us for any additional information or query on either one of below menti
 ```
 
 You can contact us on LinkedIn, too.
-```
 1. [Tanmay Damle](https://www.linkedin.com/in/tanmay-damle-924839190/)
 2. [Yash Kavaiya](https://www.linkedin.com/in/yash-kavaiya-a10a1a190/)
-```
