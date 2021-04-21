@@ -62,14 +62,14 @@ Comments are added wherever necessary so that the code can be easily understood.
 
 These are the APIs/Frameworks/Modules We used in order to make this website.
 ```
-Python Programming Language
-Django framework
-django-mysql module
-Twilio API
-Heroku API
-Bootstrap framework
-Pillow module
-psycopg2 module
+Python - Programming Language
+Django - framework
+django-mysql - module
+Twilio - API
+Heroku - API
+Bootstrap - framework
+Pillow - module
+psycopg2 - module
 
 ```
 ## Contact Us
