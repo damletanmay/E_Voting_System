@@ -72,3 +72,15 @@ Pillow module
 psycopg2 module
 
 ```
+## Contact Us
+Write to us for any additional information or query on either one of below mentioned Email ID:
+```
+1. tanmay.damle.25@gmail.com
+2. miteswati@gmail.com
+```
+
+You can contact us on LinkedIn, too.
+```
+1. [Tanmay Damle](https://www.linkedin.com/in/tanmay-damle-924839190/)
+2. [Yash Kavaiya](https://www.linkedin.com/in/yash-kavaiya-a10a1a190/)
+```
