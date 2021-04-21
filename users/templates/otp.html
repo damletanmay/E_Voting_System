@@ -26,37 +26,38 @@
   {% if error %}
   <h3 class="alert alert-danger" role="alert">{{ error }}</h3>
   {% endif %}
-  <center><h3 class="success">OTP has been Sent on Mobile No: +91{{ voter.phone_no }}</h3> </center>
+  
   <section>
-    <div class="modal-dialog text-center">
+      <center><h3 class="success">OTP has been Sent on Mobile No: +91{{ voter.phone_no }}</h3> </center>
+      <div class="modal-dialog text-center">
 
-      <div class="col-sm-9 main-section">
-        <div class="modal-content">
+          <div class="col-sm-9 main-section">
+              <div class="modal-content">
 
-          <div class="col-12 user-img">
-            <img src="{% static 'img/face_2.png' %}">
-          </div>
+                  <div class="col-12 user-img">
+                      <img src="{% static 'img/face_2.png' %}">
+                  </div>
 
-          <div class="login">
-            <p> ENTER OTP </p>
-          </div>
+                  <div class="login">
+                      <p> ENTER OTP </p>
+                  </div>
 
-          <div class="col-12 form-input">
-            <form action="{% url 'otp' %}" method="post">
-              {% csrf_token %}
+                  <div class="col-12 form-input">
+                      <form action="{% url 'otp' %}" method="post">
+                          {% csrf_token %}
 
-              <div class="form-group">
-                <p>OTP</p>
-                <input type="password" class="form-control" name="user_otp" placeholder="Enter OTP" required>
-                <input type="hidden" name="voter" value="{{ voter }}">
-                <input type="hidden" name="otp" value="{{ otp }}">
-                <button type="submit" id="login_btn" class="btn btn-success">Login</button>
+                          <div class="form-group">
+                              <p>OTP</p>
+                              <input type="password" class="form-control" name="user_otp" placeholder="Enter OTP" required>
+                              <input type="hidden" name="voter" value="{{ voter }}">
+                              <input type="hidden" name="otp" value="{{ otp }}">
+                              <button type="submit" id="login_btn" class="btn btn-success">Login</button>
+                          </div>
+                      </form>
+                  </div>
               </div>
-            </form>
           </div>
-        </div>
       </div>
-    </div>
   </section>
 </body>
 
