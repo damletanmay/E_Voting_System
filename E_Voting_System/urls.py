@@ -29,5 +29,9 @@ urlpatterns = [
     path('election/', include('election.urls')),# redirecting to election's urls.py
     path('candidate/',include('candidate.urls')),# redirecting to candidate's urls.py
     path('winner/<int:election_id>',views.winner,name='winner')
-] + static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
+]
+
 # for accessing the images and the url of media files.
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
