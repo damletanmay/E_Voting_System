@@ -86,10 +86,21 @@ WSGI_APPLICATION = 'E_Voting_System.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dfbh6bsn57a1md',
+        'USER':'smhvemoprpdquf',
+        'PASSWORD':'69bb23a09500c8ac221d6d9768559c151124bb60c4554886e47c38c17044b831',
+        'HOST':'postgres://smhvemoprpdquf:69bb23a09500c8ac221d6d9768559c151124bb60c4554886e47c38c17044b831@ec2-54-198-252-9.compute-1.amazonaws.com:5432/dfbh6bsn57a1md',
+        'PORT':'5432',
     }
 }
 
