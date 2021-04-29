@@ -2,7 +2,7 @@ import math, random
 import twilio
 from twilio.rest import Client
 from decouple import config
-
+import environ
 def generateOTP() :# to generate OTP
 	string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 	OTP = ""
@@ -15,9 +15,9 @@ def generateOTP() :# to generate OTP
 
 def sendOTP(mobile,otp):
 	# from twilio docs.
-	account_sid = process.env.ACCOUNT_SID
-	auth_token = process.env.AUTH_TOKEN
-	from_mobile = process.env.MOBILE
+	account_sid = env(ACCOUNT_SID)
+	auth_token = env(AUTH_TOKEN)
+	from_mobile = env(MOBILE)
 
 	client = Client(account_sid,auth_token)
 	# to create customized message.
