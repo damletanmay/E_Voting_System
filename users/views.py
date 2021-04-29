@@ -7,6 +7,8 @@ from election.models import Election
 from candidate.models import Candidate
 import datetime
 from . import otp as OTP
+from .secrets import *
+
 
 # for login page.
 # As there are two types of requests GET & POST i checked where to redirect if either was the case in each view.
@@ -47,12 +49,12 @@ def login(request):
                     # else it will create an account for the voter and then log user in.
                     otp = OTP.generateOTP()
                     if user is not None:
-                        OTP.sendOTP(voter.phone_no,otp)
+                        OTP.sendOTP(voter.phone_no,otp,getSid(),getToken(),getFromMobile())
                         return render(request,'otp.html',{'voter':voter,'otp':otp})
                     else:
                         user = User.objects.create_user(username,password = username)# to make user
                         election_data = {'data': getData()}
-                        OTP.sendOTP(voter.phone_no,otp)
+                        OTP.sendOTP(voter.phone_no,otp,getSid(),getToken(),getFromMobile())
                         return render(request,'otp.html',{'voter':voter,'otp':otp})
 
                 except Voter.DoesNotExist:# above error will be handled here.
