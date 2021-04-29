@@ -15,9 +15,9 @@ def generateOTP() :# to generate OTP
 
 def sendOTP(mobile,otp):
 	# from twilio docs.
-	account_sid = config('ACCOUNT_SID')
-	auth_token = config('AUTH_TOKEN')
-	from_mobile = config('MOBILE')
+	account_sid = process.env.ACCOUNT_SID
+	auth_token = process.env.AUTH_TOKEN
+	from_mobile = process.env.MOBILE
 
 	client = Client(account_sid,auth_token)
 	# to create customized message.
