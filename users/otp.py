@@ -1,12 +1,7 @@
 import math, random
 import twilio
 from twilio.rest import Client
-<<<<<<< HEAD
-from decouple import config
-import environ
-=======
 
->>>>>>> parent of 2efbf7a (Some Changes)
 def generateOTP() :# to generate OTP
 	string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 	OTP = ""
