@@ -13,9 +13,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 import django_heroku
-#import dj_database_url
-
-
+import dj_database_url
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -25,10 +24,10 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'asj_b8huty-4jgmv11&%jd0@ni1&)6pe4z45ykokxpm)6q1fda'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost','127.0.0.1','e-voting--system.herokuapp.com']
 
@@ -51,7 +50,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -86,23 +85,17 @@ WSGI_APPLICATION = 'E_Voting_System.wsgi.application'
 #Database
 #https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR/ 'db.sqlite3',
-    }
-}
-#
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'dfbh6bsn57a1md',
-#         'USER':'smhvemoprpdquf',
-#         'PASSWORD':'69bb23a09500c8ac221d6d9768559c151124bb60c4554886e47c38c17044b831',
-#         'HOST':'postgres://smhvemoprpdquf:69bb23a09500c8ac221d6d9768559c151124bb60c4554886e47c38c17044b831@ec2-54-198-252-9.compute-1.amazonaws.com:5432/dfbh6bsn57a1md',
-#         'PORT':'5432',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR/ 'db.sqlite3',
 #     }
 # }
+
+# for hosting
+DATABASES = {
+    'default': dj_database_url.config()
+}
 
 
 # Password validation
@@ -157,4 +150,3 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
-#DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
