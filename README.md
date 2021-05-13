@@ -2,9 +2,6 @@
 
 We've Made this project to try to keep the maximum things online, except for candidate registration which requires document verification.
 
-# Hosting
-
-The website is hosted live [here.](https://e-voting--system.herokuapp.com/)
 
 ## Brief about E-Voting
 
