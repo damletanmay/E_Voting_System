@@ -56,11 +56,15 @@
                 </div>
 
                 <div class="custom-file">
-                    <input type="file" accept="image/*" name="party_symbol" class="custom-file-input" value="" required />
+                    <input type="file" accept="image/*" id='party_symbol'  onchange="x(this.value)" name="party_symbol" class="custom-file-input" value="" required />
                     <label class="custom-file-label" for="party_symbol"></label>
                 </div>
             </div>
-
+            <script>
+                function x(value) {
+                  console.log(value);
+                }
+            </script>
             <div class="input-group mb-3" id="long_field">
                 <div class="input-group-prepend" id="long_label">
                     <span class="input-group-text">Party Motto:</span>
@@ -75,7 +79,13 @@
                 </div>
                 <input type="text" name="party_leader_name" class="form-control" value="" required />
             </div>
+            <script type="text/javascript">
+            function x(value) {
+              console.log(value);
+              console.log(type(value));
+            }
 
+            </script>
             <input type="submit" class="btn btn-success" value="Submit">
         </form>
     </section>

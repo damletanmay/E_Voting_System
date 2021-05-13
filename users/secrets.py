@@ -1,6 +1,12 @@
-account_sid = 'AC909dfaacc745190880cd6c08adb9cfc2'
-auth_token = 'e8305900af1ac6b8de1cb7c1bb135cb0'
-from_mobile= '+19853032169'
+import environ
+
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
+
+account_sid = env('ACCOUNT_SID')
+auth_token = env('AUTH_TOKEN')
+from_mobile= env('MOBILE')
 
 def getSid():
     return account_sid
