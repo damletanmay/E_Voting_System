@@ -4,6 +4,9 @@ import os
 import django_heroku
 import dj_database_url
 
+# Activate Django-Heroku.
+django_heroku.settings(locals(), staticfiles=False)
+
 # Initialise environment variables
 env = environ.Env()
 environ.Env.read_env()
@@ -19,7 +22,7 @@ ACCOUNT_SID = env('ACCOUNT_SID')
 AUTH_TOKEN = env('AUTH_TOKEN')
 MOBILE =  env('MOBILE')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost','127.0.0.1','e-voting--system.herokuapp.com']
 
@@ -83,8 +86,7 @@ DATABASES = {
         'NAME': BASE_DIR/ 'db.sqlite3',
     }
 }
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=sTrue)
-
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 #
 # DATABASES = {
 #     'default': {
@@ -146,6 +148,3 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# Activate Django-Heroku.
-django_heroku.settings(locals())
