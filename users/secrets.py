@@ -1,12 +1,8 @@
-import environ
+from E_Voting_System import settings
 
-# Initialise environment variables
-env = environ.Env()
-environ.Env.read_env()
-
-account_sid = env('ACCOUNT_SID')
-auth_token = env('AUTH_TOKEN')
-from_mobile= env('MOBILE')
+account_sid = settings.ACCOUNT_SID
+auth_token = settings.AUTH_TOKEN
+from_mobile= settings.MOBILE
 
 def getSid():
     return account_sid
